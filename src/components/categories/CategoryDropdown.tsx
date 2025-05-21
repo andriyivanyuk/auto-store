@@ -4,12 +4,10 @@ import MegaMenu2 from "./mega-menu/MegaMenu2";
 import CategoryMenuItem from "./CategoryMenuItem";
 import { StyledCategoryDropdown } from "./styles";
 
-// =========================================
 type CategoryDropdownProps = {
   open: boolean;
   position?: "absolute" | "relative";
 };
-// =========================================
 
 const megaMenu = { MegaMenu1, MegaMenu2 };
 
@@ -28,6 +26,7 @@ export default function CategoryDropdown({
             href={item.href}
             icon={item.icon}
             title={item.title}
+            caret={false}
           >
             <MegaMenu data={{}} />
           </CategoryMenuItem>
