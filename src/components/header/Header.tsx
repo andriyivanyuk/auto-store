@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { IconShoppingCart, IconUser } from "@tabler/icons-react";
+import dynamic from "next/dynamic";
+
+import { IconShoppingCart } from "@tabler/icons-react";
 
 import Login from "@sections/auth/Login";
 
@@ -16,7 +18,10 @@ import { Tiny } from "@component/Typography";
 import { IconButton } from "@component/buttons";
 import Sidenav from "@component/sidenav/Sidenav";
 import Categories from "@component/categories/Categories";
-import { SearchInputWithCategory } from "@component/search-box";
+const SearchInputWithCategory = dynamic(
+  () => import("@component/search-box/SearchInputWithCategory"),
+  { ssr: false }
+);
 import useCart from "@hook/useCart";
 import StyledHeader from "./styles";
 import Logo from "./Logo";
@@ -51,7 +56,8 @@ export default function Header({ isFixed, className }: HeaderProps) {
           borderRadius="50%"
           alignItems="center"
           position="absolute"
-          justifyContent="center">
+          justifyContent="center"
+        >
           <Tiny color="white" fontWeight="600" lineHeight={1}>
             {state.cart.length}
           </Tiny>
@@ -72,7 +78,12 @@ export default function Header({ isFixed, className }: HeaderProps) {
             <div className="category-holder">
               <Categories
                 handler={(handleOpen) => (
-                  <FlexBox color="text.hint" alignItems="center" ml="1rem" onClick={handleOpen}>
+                  <FlexBox
+                    color="text.hint"
+                    alignItems="center"
+                    ml="1rem"
+                    onClick={handleOpen}
+                  >
                     <Icon>categories</Icon>
                     <Icon>arrow-down-filled</Icon>
                   </FlexBox>
@@ -87,10 +98,6 @@ export default function Header({ isFixed, className }: HeaderProps) {
         </FlexBox>
 
         <FlexBox className="header-right" alignItems="center">
-          <IconButton borderRadius={8} ml="1rem" bg="gray.200" p="12px" onClick={handleOpenLogin}>
-            <IconUser size={16} stroke={1.5} />
-          </IconButton>
-
           <Modal open={loginOpen} onClose={handleCloseLogin}>
             <Login />
           </Modal>
@@ -100,7 +107,8 @@ export default function Header({ isFixed, className }: HeaderProps) {
             width={380}
             position="right"
             handle={CART_HANDLE}
-            onClose={handleCloseCart}>
+            onClose={handleCloseCart}
+          >
             <MiniCart />
           </Sidenav>
         </FlexBox>

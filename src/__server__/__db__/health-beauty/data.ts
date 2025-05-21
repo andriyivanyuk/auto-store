@@ -1,9 +1,21 @@
 // category navigations
 export const categoryNavigation = [
   { icon: "home", title: "Home", href: "/product/search/Dariry & Eggs" },
-  { icon: "popular", title: "Popular Products", href: "/product/search/Breakfast" },
-  { icon: "trending", title: "Trending Products", href: "/product/search/Frozen" },
-  { icon: "products", title: "All Products", href: "/product/search/vegetables" },
+  {
+    icon: "popular",
+    title: "Popular Products",
+    href: "/product/search/Breakfast",
+  },
+  {
+    icon: "trending",
+    title: "Trending Products",
+    href: "/product/search/Frozen",
+  },
+  {
+    icon: "products",
+    title: "All Products",
+    href: "/product/search/vegetables",
+  },
   {
     icon: "fashion",
     title: "Health and beauty",
@@ -79,7 +91,11 @@ export const categoryNavigation = [
     title: "Digital Thermometer",
     href: "/product/search/Sauces & Jems",
   },
-  { icon: "oxygen-pump", title: "Oxygen Pump", href: "/product/search/Breakfast" },
+  {
+    icon: "oxygen-pump",
+    title: "Oxygen Pump",
+    href: "/product/search/Breakfast",
+  },
   { icon: "eye-lens", title: "Lense Case Kit", href: "/product/search/Frozen" },
   { icon: "automotive", title: "Automotive", href: "/product/search/Organic" },
 ];

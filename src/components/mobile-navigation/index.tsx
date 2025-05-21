@@ -66,7 +66,8 @@ export default function MobileNavigationBar() {
                 bg="primary.main"
                 position="absolute"
                 color="primary.text"
-                left="calc(50% + 8px)">
+                left="calc(50% + 8px)"
+              >
                 {state.cart.length}
               </Chip>
             )}
@@ -80,8 +81,7 @@ export default function MobileNavigationBar() {
 }
 
 const list = [
-  { title: "Home", icon: "home", href: "/" },
-  { title: "Category", icon: "category", href: "/mobile-category-nav" },
-  { title: "Cart", icon: "bag", href: "/cart" },
-  { title: "Account", icon: "user-2", href: "/profile" }
+  { title: "Головна", icon: "home", href: "/" },
+  { title: "Категорії", icon: "category", href: "/mobile-category-nav" },
+  { title: "Кошик", icon: "bag", href: "/cart" },
 ];
