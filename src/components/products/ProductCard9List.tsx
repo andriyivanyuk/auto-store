@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-
 import FlexBox from "@component/FlexBox";
 import Pagination from "@component/pagination";
 import { SemiSpan } from "@component/Typography";
@@ -31,8 +30,13 @@ export default function ProductListView({ products }: Props) {
         />
       ))}
 
-      <FlexBox flexWrap="wrap" justifyContent="space-between" alignItems="center" mt="32px">
-        <SemiSpan>Showing 1-9 of 1.3k Products</SemiSpan>
+      <FlexBox
+        flexWrap="wrap"
+        justifyContent="space-between"
+        alignItems="center"
+        mt="32px"
+      >
+        <SemiSpan>Showing 1–{products.length} of 1.3k Products</SemiSpan>
         <Pagination pageCount={10} />
       </FlexBox>
     </Fragment>

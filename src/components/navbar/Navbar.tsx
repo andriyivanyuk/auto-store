@@ -1,7 +1,11 @@
 "use client";
 
 import { useTheme } from "styled-components";
-import { IconCategoryFilled, IconChevronDown, IconChevronRight } from "@tabler/icons-react";
+import {
+  IconCategoryFilled,
+  IconChevronDown,
+  IconChevronRight,
+} from "@tabler/icons-react";
 
 import Box from "../Box";
 import Card from "../Card";
@@ -45,14 +49,23 @@ const NavItem = ({ nav, isRoot = false }: { nav: Nav; isRoot?: boolean }) => {
       key={nav.title}
       target="_blank"
       className="nav-link"
-      rel="noopener noreferrer">
+      rel="noopener noreferrer"
+    >
       {renderBadgeOrSpan(nav.title)}
     </NavLink>
   );
 
   const renderInternalLink = () => (
-    <NavLink className={isRoot ? "nav-link" : ""} href={nav.url} key={nav.title}>
-      {isRoot ? renderBadgeOrSpan(nav.title) : <MenuItem>{renderBadgeOrSpan(nav.title)}</MenuItem>}
+    <NavLink
+      className={isRoot ? "nav-link" : ""}
+      href={nav.url}
+      key={nav.title}
+    >
+      {isRoot ? (
+        renderBadgeOrSpan(nav.title)
+      ) : (
+        <MenuItem>{renderBadgeOrSpan(nav.title)}</MenuItem>
+      )}
     </NavLink>
   );
 
@@ -64,10 +77,17 @@ const NavItem = ({ nav, isRoot = false }: { nav: Nav; isRoot?: boolean }) => {
           position="relative"
           flexDirection="column"
           alignItems="center"
-          key={nav.title}>
+          key={nav.title}
+        >
           {renderBadgeOrSpan(nav.title)}
           <div className="root-child">
-            <Card borderRadius={8} mt="1.25rem" py="0.5rem" boxShadow="large" minWidth="230px">
+            <Card
+              borderRadius={8}
+              mt="1.25rem"
+              py="0.5rem"
+              boxShadow="large"
+              minWidth="230px"
+            >
               <NestedNav list={nav.child} />
             </Card>
           </div>
@@ -76,8 +96,16 @@ const NavItem = ({ nav, isRoot = false }: { nav: Nav; isRoot?: boolean }) => {
     }
 
     return (
-      <Box className="parent" position="relative" minWidth="230px" key={nav.title}>
-        <MenuItem color="gray.700" style={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        className="parent"
+        position="relative"
+        minWidth="230px"
+        key={nav.title}
+      >
+        <MenuItem
+          color="gray.700"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           {renderBadgeOrSpan(nav.title)}
           <IconChevronRight stroke={1.5} size={16} />
         </MenuItem>
@@ -97,7 +125,13 @@ const NavItem = ({ nav, isRoot = false }: { nav: Nav; isRoot?: boolean }) => {
   return null;
 };
 
-const NestedNav = ({ list, isRoot = false }: { list: Nav[]; isRoot?: boolean }) => {
+const NestedNav = ({
+  list,
+  isRoot = false,
+}: {
+  list: Nav[];
+  isRoot?: boolean;
+}) => {
   return (
     <>
       {list?.map((nav) => (
@@ -116,7 +150,12 @@ export default function Navbar({ navListOpen }: NavbarProps) {
 
   return (
     <StyledNavbar>
-      <Container height="100%" display="flex" alignItems="center" justifyContent="space-between">
+      <Container
+        height="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Categories
           open={navListOpen}
           handler={(handleOpen) => (
@@ -125,24 +164,36 @@ export default function Navbar({ navListOpen }: NavbarProps) {
               variant="text"
               height="40px"
               bg="body.default"
-              onClick={handleOpen}>
-              <IconCategoryFilled stroke={1.5} size={18} color={theme.colors.primary.main} />
+              onClick={handleOpen}
+            >
+              <IconCategoryFilled
+                stroke={1.5}
+                size={18}
+                color={theme.colors.primary.main}
+              />
 
               <Typography
                 ml="10px"
                 flex="1 1 0"
                 fontWeight="600"
                 textAlign="left"
-                color="text.muted">
-                Categories
+                color="text.muted"
+              >
+                Категорії
               </Typography>
 
-              <IconChevronDown className="dropdown-icon" size={18} stroke={1.5} />
+              <IconChevronDown
+                className="dropdown-icon"
+                size={18}
+                stroke={1.5}
+              />
             </Button>
           )}
         />
 
-        <FlexBox style={{ gap: 32 }}>{renderNestedNav(navbarNavigations, true)}</FlexBox>
+        <FlexBox style={{ gap: 32 }}>
+          {renderNestedNav(navbarNavigations, true)}
+        </FlexBox>
       </Container>
     </StyledNavbar>
   );

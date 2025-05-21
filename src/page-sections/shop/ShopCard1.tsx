@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { IconArrowNarrowRight, IconMapPin, IconPhone } from "@tabler/icons-react";
+import {
+  IconArrowNarrowRight,
+  IconMapPin,
+  IconPhone,
+} from "@tabler/icons-react";
 
 import Box from "@component/Box";
 import Avatar from "@component/avatar";
@@ -30,7 +34,7 @@ export default function ShopCard1({
   imgUrl,
   address,
   shopUrl,
-  coverImgUrl
+  coverImgUrl,
 }: ShopCard1Props) {
   return (
     <ShopCard1Wrapper overflow="hidden" coverImgUrl={coverImgUrl}>
@@ -61,7 +65,13 @@ export default function ShopCard1({
       </div>
 
       <FlexBox pl="30px" pr="18px" justifyContent="space-between">
-        <Avatar src={imgUrl} size={64} mt={-32} border="2px solid" borderColor="gray.100" />
+        <Avatar
+          src={imgUrl}
+          size={64}
+          mt={-32}
+          border="2px solid"
+          borderColor="gray.100"
+        />
 
         <Link href={shopUrl}>
           <IconButton my="0.25rem" color="gray.500">

@@ -20,7 +20,7 @@ export default function ProductGridView({ products }: Props) {
     <div>
       <Grid container spacing={6}>
         {products.map((item) => (
-          <Grid item lg={4} sm={6} xs={12} key={item.id}>
+          <Grid item lg={3} md={4} sm={6} xs={12} key={item.id}>
             <ProductCard1
               id={item.id}
               slug={item.slug}
@@ -36,17 +36,14 @@ export default function ProductGridView({ products }: Props) {
       </Grid>
 
       <FlexBox
-        style={{
-          gap: "1rem",
-          display: "flex",
-          flexWrap: "wrap",
-          marginTop: "2rem",
-          alignItems: "center",
-          justifyContent: "space-between",
-          [isTablet ? "flex-direction" : "row"]: "column"
-        }}>
-        <SemiSpan>Showing 1-9 of 1.3k Products</SemiSpan>
-        <Pagination pageCount={products.length} />
+        mt="2rem"
+        flexWrap="wrap"
+        flexDirection={isTablet ? "column" : "row"}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <SemiSpan>Showing 1–{products.length} of 1.3k Products</SemiSpan>
+        <Pagination pageCount={10} />
       </FlexBox>
     </div>
   );

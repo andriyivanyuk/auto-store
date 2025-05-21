@@ -27,13 +27,6 @@ const navbarNavigations = [
         ],
       },
       {
-        title: "Vendor",
-        child: [
-          { title: "All vendors", url: "/shops" },
-          { title: "Vendor store", url: "/shops/scarlett-beauty" },
-        ],
-      },
-      {
         title: "Shop",
         child: [
           { title: "Search product", url: "/product/search/mobile phone" },
@@ -41,13 +34,6 @@ const navbarNavigations = [
           { title: "Cart", url: "/cart" },
           { title: "Checkout", url: "/checkout" },
           { title: "Alternative Checkout", url: "/checkout-alternative" },
-        ],
-      },
-      {
-        title: "Auth",
-        child: [
-          { title: "Sign In", url: "/login" },
-          { title: "Sign Up", url: "/signup" },
         ],
       },
     ],

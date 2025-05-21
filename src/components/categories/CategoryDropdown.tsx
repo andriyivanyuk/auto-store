@@ -13,7 +13,10 @@ type CategoryDropdownProps = {
 
 const megaMenu = { MegaMenu1, MegaMenu2 };
 
-export default function CategoryDropdown({ open, position = "absolute" }: CategoryDropdownProps) {
+export default function CategoryDropdown({
+  open,
+  position = "absolute",
+}: CategoryDropdownProps) {
   return (
     <StyledCategoryDropdown open={open} position={position}>
       {navigations.map((item) => {
@@ -25,8 +28,8 @@ export default function CategoryDropdown({ open, position = "absolute" }: Catego
             href={item.href}
             icon={item.icon}
             title={item.title}
-            caret={!!item.menuData}>
-            <MegaMenu data={item.menuData || {}} />
+          >
+            <MegaMenu data={{}} />
           </CategoryMenuItem>
         );
       })}
