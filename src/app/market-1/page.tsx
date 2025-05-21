@@ -1,6 +1,8 @@
-// API FUNCTIONS
+import AppLayout from "@component/layout/layout-1";
+import Navbar from "@component/navbar/Navbar";
+
 import api from "@utils/__api__/market-1";
-// PAGE SECTION COMPONENTS
+
 import Section1 from "@sections/market-1/Section1";
 import Section2 from "@sections/market-1/Section2";
 import Section3 from "@sections/market-1/Section3";
@@ -23,7 +25,7 @@ export default async function Market1() {
     mobileShops,
     opticsShops,
     mobileBrands,
-    opticsBrands
+    opticsBrands,
   ] = await Promise.all([
     api.getCarList(),
     api.getCarBrands(),
@@ -32,59 +34,36 @@ export default async function Market1() {
     api.getMobileShops(),
     api.getOpticsShops(),
     api.getMobileBrands(),
-    api.getOpticsBrands()
+    api.getOpticsBrands(),
   ]);
 
   return (
-    <main>
-      {/* HERO CAROUSEL AREA */}
-      <Section1 />
-
-      {/* FLASH DEAL PRODUCTS AREA */}
-      <Section2 />
-
-      {/* TOP CATEGORIES AREA */}
-      <Section3 />
-
-      {/* TOP RATING AND BRANDS AREA */}
-      <Section4 />
-
-      {/* NEW ARRIVALS AREA */}
-      <Section5 />
-
-      {/* BIG DISCOUNT AREA */}
-      <Section13 />
-
-      {/* CAR LIST AREA */}
-      <Section6 carBrands={carBrands} carList={carList} />
-
-      {/* MOBILE PHONES AREA */}
-      <Section7
-        shops={mobileShops}
-        brands={mobileBrands}
-        title="Mobile Phones"
-        productList={mobileList}
-      />
-
-      {/* DISCOUNT BANNERS AREA */}
-      <Section8 />
-
-      {/* OPTICS AND WATCH AREA */}
-      <Section7
-        shops={opticsShops}
-        brands={opticsBrands}
-        title="Optics / Watch"
-        productList={opticsList}
-      />
-
-      {/* CATEGORIES AREA */}
-      <Section10 />
-
-      {/* MORE PRODUCTS AREA */}
-      <Section11 />
-
-      {/* SERVICES AREA */}
-      <Section12 />
-    </main>
+    <AppLayout navbar={<Navbar navListOpen />}>
+      <main>
+        <Section1 />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+        <Section5 />
+        <Section13 />
+        <Section6 carBrands={carBrands} carList={carList} />
+        <Section7
+          shops={mobileShops}
+          brands={mobileBrands}
+          title="Mobile Phones"
+          productList={mobileList}
+        />
+        <Section8 />
+        <Section7
+          shops={opticsShops}
+          brands={opticsBrands}
+          title="Optics / Watch"
+          productList={opticsList}
+        />
+        <Section10 />
+        <Section11 />
+        <Section12 />
+      </main>
+    </AppLayout>
   );
 }
