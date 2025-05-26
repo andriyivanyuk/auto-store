@@ -32,9 +32,11 @@ export const fetchProductTypes = async () => {
   }
 };
 
-export const fetchProductsByCategory = async (productTypeId) => {
+export const fetchProductsByCategory = async (
+  productTypeId: string,
+  storeId: string
+) => {
   try {
-    const storeId = getStoreIdFromCookie();
     if (!storeId) {
       throw new Error("Store ID not found in cookies");
     }

@@ -21,10 +21,11 @@ import ProductFilterCard from "@component/products/ProductFilterCard";
 import useWindowSize from "@hook/useWindowSize";
 import db from "@data/db";
 import { SortOption } from "interfaces/sortOption";
+import { ProductListResponse } from "interfaces/productListResponse";
 
 interface Props {
   sortOptions: SortOption[];
-  products: any;
+  products: ProductListResponse[];
 }
 
 export default function ProductList({ sortOptions, products }: Props) {
@@ -115,9 +116,9 @@ export default function ProductList({ sortOptions, products }: Props) {
       <Grid container spacing={6}>
         <Grid item lg={12} xs={12}>
           {view === "grid" ? (
-            <ProductGridView products={db.slice(95, 104)} />
+            <ProductGridView products={products} />
           ) : (
-            <ProductListView products={db.slice(95, 104)} />
+            <ProductListView products={products} />
           )}
         </Grid>
       </Grid>

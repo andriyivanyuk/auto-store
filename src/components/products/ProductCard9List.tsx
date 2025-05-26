@@ -4,10 +4,11 @@ import Pagination from "@component/pagination";
 import { SemiSpan } from "@component/Typography";
 import { ProductCard9 } from "@component/product-cards";
 import Product from "@models/product.model";
+import { ProductListResponse } from "interfaces/productListResponse";
 
 // ==========================================================
 interface Props {
-  products: Product[];
+  products: ProductListResponse[];
 }
 // ==========================================================
 
@@ -15,19 +16,7 @@ export default function ProductListView({ products }: Props) {
   return (
     <Fragment>
       {products.map((item) => (
-        <ProductCard9
-          mb="1.25rem"
-          id={item.id}
-          key={item.id}
-          slug={item.slug}
-          price={item.price}
-          title={item.title}
-          off={item.discount}
-          rating={item.rating}
-          images={item.images}
-          imgUrl={item.thumbnail}
-          categories={item.categories}
-        />
+        <ProductCard9 key={item.product_id} product={item} mb="1.25rem" />
       ))}
 
       <FlexBox

@@ -1,16 +1,16 @@
-import FlexBox from "@component/FlexBox";
+"use client";
+
 import Grid from "@component/grid/Grid";
+import FlexBox from "@component/FlexBox";
 import Pagination from "@component/pagination";
 import { ProductCard1 } from "@component/product-cards";
 import { SemiSpan } from "@component/Typography";
 import useWindowSize from "@hook/useWindowSize";
-import Product from "@models/product.model";
+import { ProductListResponse } from "interfaces/productListResponse";
 
-// ==========================================================
 interface Props {
-  products: Product[];
+  products: ProductListResponse[];
 }
-// ==========================================================
 
 export default function ProductGridView({ products }: Props) {
   const width = useWindowSize();
@@ -20,16 +20,13 @@ export default function ProductGridView({ products }: Props) {
     <div>
       <Grid container spacing={6}>
         {products.map((item) => (
-          <Grid item lg={3} md={4} sm={6} xs={12} key={item.id}>
+          <Grid item lg={3} md={4} sm={6} xs={12} key={item.product_id}>
             <ProductCard1
-              id={item.id}
-              slug={item.slug}
-              price={item.price}
+              product_id={item.product_id}
               title={item.title}
-              off={item.discount}
+              price={item.price}
               images={item.images}
-              imgUrl={item.thumbnail}
-              rating={item.rating || 4}
+              imgUrl={item.images?.[0]}
             />
           </Grid>
         ))}
@@ -42,8 +39,10 @@ export default function ProductGridView({ products }: Props) {
         alignItems="center"
         justifyContent="space-between"
       >
-        <SemiSpan>Showing 1–{products.length} of 1.3k Products</SemiSpan>
-        <Pagination pageCount={10} />
+        <SemiSpan>
+          Showing 1–{products.length} of {products.length} Products
+        </SemiSpan>
+        <Pagination pageCount={1} />
       </FlexBox>
     </div>
   );

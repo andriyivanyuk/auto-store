@@ -7,7 +7,6 @@ import MegaMenu2 from "./mega-menu/MegaMenu2";
 import CategoryMenuItem from "./CategoryMenuItem";
 import { StyledCategoryDropdown } from "./styles";
 import { fetchProductTypes } from "services/apiService";
-// import { fetchProductTypes } from "@/services/apiService"; // шлях онови під себе
 
 type CategoryDropdownProps = {
   open: boolean;
@@ -40,7 +39,7 @@ export default function CategoryDropdown({
       {productTypes.map((item) => (
         <CategoryMenuItem
           key={item.product_type_id}
-          href={`/product-type/${item.product_type_id}`}
+          href={`/product/product-list/type/${item.product_type_id}`}
           title={item.product_type}
           caret={false}
           imageSrc={item.icon_path}
