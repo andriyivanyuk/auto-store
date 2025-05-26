@@ -11,10 +11,13 @@ import Section10 from "@sections/market-1/Section10";
 import Section11 from "@sections/market-1/Section11";
 import Section12 from "@sections/market-1/Section12";
 
+import StoreIdSetter from "@component/StoreIdSetter";
+
 export default async function Market1() {
   return (
     <AppLayout navbar={<Navbar navListOpen />}>
       <main>
+        <StoreIdSetter />
         <Section1 />
         <Section2 />
         <Section3 />

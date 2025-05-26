@@ -1,8 +1,13 @@
-import navigations from "@data/navigations";
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import MegaMenu1 from "./mega-menu/MegaMenu1";
 import MegaMenu2 from "./mega-menu/MegaMenu2";
 import CategoryMenuItem from "./CategoryMenuItem";
 import { StyledCategoryDropdown } from "./styles";
+import { fetchProductTypes } from "services/apiService";
+// import { fetchProductTypes } from "@/services/apiService"; // шлях онови під себе
 
 type CategoryDropdownProps = {
   open: boolean;
@@ -15,23 +20,34 @@ export default function CategoryDropdown({
   open,
   position = "absolute",
 }: CategoryDropdownProps) {
+  const [productTypes, setProductTypes] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadProductTypes = async () => {
+      try {
+        const data = await fetchProductTypes();
+        setProductTypes(data);
+      } catch (err) {
+        console.error("Не вдалося завантажити типи товарів:", err);
+      }
+    };
+
+    loadProductTypes();
+  }, []);
+
   return (
     <StyledCategoryDropdown open={open} position={position}>
-      {navigations.map((item) => {
-        const MegaMenu = megaMenu[item.menuComponent];
-
-        return (
-          <CategoryMenuItem
-            key={item.title}
-            href={item.href}
-            icon={item.icon}
-            title={item.title}
-            caret={false}
-          >
-            <MegaMenu data={{}} />
-          </CategoryMenuItem>
-        );
-      })}
+      {productTypes.map((item) => (
+        <CategoryMenuItem
+          key={item.product_type_id}
+          href={`/product-type/${item.product_type_id}`}
+          title={item.product_type}
+          caret={false}
+          imageSrc={item.icon_path}
+        >
+          <MegaMenu1 data={{}} />
+        </CategoryMenuItem>
+      ))}
     </StyledCategoryDropdown>
   );
 }

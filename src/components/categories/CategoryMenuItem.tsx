@@ -1,31 +1,37 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { IconChevronRight } from "@tabler/icons-react";
-import Icon from "@component/icon/Icon";
+import Image from "next/image";
 import { StyledCategoryMenuItem } from "./styles";
 
-// ===============================================================
 interface CategoryMenuItemProps {
   href: string;
-  icon?: string;
   title: string;
   caret?: boolean;
+  imageSrc?: string;
   children: ReactNode;
 }
-// ===============================================================
 
 export default function CategoryMenuItem({
   href,
-  icon,
   title,
   children,
-  caret = true
+  caret = true,
+  imageSrc,
 }: CategoryMenuItemProps) {
   return (
     <StyledCategoryMenuItem>
       <Link href={href}>
         <div className="category-dropdown-link">
-          {icon && <Icon variant="small">{icon}</Icon>}
+          {imageSrc && (
+            <Image
+              src={imageSrc}
+              alt={title}
+              width={24}
+              height={24}
+              style={{ objectFit: "contain" }}
+            />
+          )}
           <span className="title">{title}</span>
           {caret && <IconChevronRight stroke={1.5} size={16} />}
         </div>
