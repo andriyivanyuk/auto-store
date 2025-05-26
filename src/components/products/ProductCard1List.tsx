@@ -24,7 +24,7 @@ export default function ProductGridView({ products }: Props) {
             <ProductCard1
               product_id={item.product_id}
               title={item.title}
-              price={item.price}
+              price={Number(item.price)}
               images={item.images}
               imgUrl={item.images?.[0]}
             />
@@ -40,7 +40,7 @@ export default function ProductGridView({ products }: Props) {
         justifyContent="space-between"
       >
         <SemiSpan>
-          Showing 1–{products.length} of {products.length} Products
+          Показано 1–{products.length} із {products.length} Продуктів
         </SemiSpan>
         <Pagination pageCount={1} />
       </FlexBox>

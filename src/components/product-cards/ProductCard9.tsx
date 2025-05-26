@@ -8,9 +8,10 @@ import Card from "@component/Card";
 import Image from "@component/Image";
 import FlexBox from "@component/FlexBox";
 import { H5 } from "@component/Typography";
+import { IconPlus, IconMinus } from "@tabler/icons-react";
+import useCart from "@hook/useCart";
 import { ProductListResponse } from "interfaces/productListResponse";
 
-// STYLED COMPONENT
 const Wrapper = styled(Card)`
   border-radius: 12px;
 
@@ -31,25 +32,74 @@ const Wrapper = styled(Card)`
       color: ${({ theme }) => theme.colors.primary.main};
     }
   }
+
+  .cart-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .circle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.primary.light};
+    color: ${({ theme }) => theme.colors.primary.main};
+    border: 1px solid ${({ theme }) => theme.colors.primary.light};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.primary.main};
+      color: white;
+    }
+  }
+
+  .qty {
+    font-weight: 600;
+    font-size: 16px;
+  }
 `;
 
-// ============================================================================
 type ProductCard9Props = {
   product: ProductListResponse;
-  [key: string]: unknown;
 };
-// ============================================================================
 
-export default function ProductCard9({ product, ...props }: ProductCard9Props) {
+export default function ProductCard9({ product }: ProductCard9Props) {
   const { product_id, title, price, images, imageUrl } = product;
+  const imgUrl = imageUrl || images[0] || "/assets/images/placeholder.jpg";
+
+  const { state, dispatch } = useCart();
+  const cartItem = state.cart.find((item) => item.id === product_id);
+
+  const handleCartAmountChange = (qty: number) => () => {
+    dispatch({
+      type: "CHANGE_CART_AMOUNT",
+      payload: {
+        id: product_id,
+        qty,
+        imgUrl,
+        price: Number(price),
+        name: title,
+      },
+    });
+  };
 
   return (
-    <Wrapper overflow="hidden" width="100%" {...props}>
+    <Wrapper overflow="hidden" width="100%">
       <Grid container spacing={1}>
+        {/* Image */}
         <Grid item md={3} sm={4} xs={12}>
           <Box position="relative">
             <Image
-              src={imageUrl || images[0] || "/assets/images/placeholder.jpg"}
+              src={imgUrl}
               alt={title}
               width="100%"
               borderRadius="0.5rem"
@@ -57,7 +107,8 @@ export default function ProductCard9({ product, ...props }: ProductCard9Props) {
           </Box>
         </Grid>
 
-        <Grid item md={9} sm={8} xs={12}>
+        {/* Info */}
+        <Grid item md={8} sm={6} xs={12}>
           <FlexBox
             flexDirection="column"
             justifyContent="center"
@@ -75,6 +126,37 @@ export default function ProductCard9({ product, ...props }: ProductCard9Props) {
                 {price} ₴
               </H5>
             </FlexBox>
+          </FlexBox>
+        </Grid>
+
+        {/* Cart control */}
+        <Grid item md={1} sm={2} xs={12}>
+          <FlexBox
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            p="1rem"
+          >
+            <div className="cart-buttons">
+              <button
+                className="circle-btn"
+                onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}
+              >
+                <IconPlus size={18} />
+              </button>
+
+              {cartItem?.qty > 0 && (
+                <>
+                  <span className="qty">{cartItem.qty}</span>
+                  <button
+                    className="circle-btn"
+                    onClick={handleCartAmountChange(cartItem.qty - 1)}
+                  >
+                    <IconMinus size={18} />
+                  </button>
+                </>
+              )}
+            </div>
           </FlexBox>
         </Grid>
       </Grid>

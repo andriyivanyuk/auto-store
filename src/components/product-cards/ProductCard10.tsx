@@ -67,7 +67,7 @@ const Wrapper = styled(Card)`
     .title,
     .categories {
       overflow: hidden;
-      white-space: nowrap;
+      white-space: wrap;
       text-overflow: ellipsis;
     }
 
@@ -125,7 +125,7 @@ export default function ProductCard10({
   title,
   price,
   imgUrl,
-  images
+  images,
 }: ProductCard10Props) {
   const { state, dispatch } = useCart();
   const [open, setOpen] = useState(false);
@@ -145,7 +145,7 @@ export default function ProductCard10({
     (qty: number) => () => {
       dispatch({
         type: "CHANGE_CART_AMOUNT",
-        payload: { price, imgUrl, id, qty, slug, name: title }
+        payload: { price, imgUrl, id, qty, slug, name: title },
       });
     },
     [dispatch, id, imgUrl, price, slug, title]
@@ -163,7 +163,8 @@ export default function ProductCard10({
             fontWeight="600"
             bg="primary.main"
             position="absolute"
-            color="primary.text">
+            color="primary.text"
+          >
             {off}% off
           </Chip>
         )}
@@ -194,7 +195,8 @@ export default function ProductCard10({
                 textAlign="left"
                 fontWeight="600"
                 className="title"
-                color="text.secondary">
+                color="text.secondary"
+              >
                 {title}
               </H3>
             </Link>
@@ -218,14 +220,16 @@ export default function ProductCard10({
             width="30px"
             alignItems="center"
             flexDirection="column-reverse"
-            justifyContent={!!cartItem ? "space-between" : "flex-start"}>
+            justifyContent={!!cartItem ? "space-between" : "flex-start"}
+          >
             <Button
               size="none"
               padding="5px"
               color="primary"
               variant="outlined"
               borderColor="primary.light"
-              onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}>
+              onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}
+            >
               <IconPlus size={16} />
             </Button>
 
@@ -241,7 +245,8 @@ export default function ProductCard10({
                   color="primary"
                   variant="outlined"
                   borderColor="primary.light"
-                  onClick={handleCartAmountChange(cartItem.qty - 1)}>
+                  onClick={handleCartAmountChange(cartItem.qty - 1)}
+                >
                   <IconMinus size={16} />
                 </Button>
               </Fragment>

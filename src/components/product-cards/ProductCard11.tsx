@@ -19,7 +19,7 @@ const StyledProductCard = styled.div`
     }
   }
   .ellipsis {
-    white-space: nowrap;
+    white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -64,7 +64,12 @@ export default function ProductCard11(props: ProductCard11Props) {
         </H6>
 
         <FlexBox alignItems="center">
-          <SemiSpan pr="0.3rem" fontWeight="600" color="primary.main" lineHeight="1">
+          <SemiSpan
+            pr="0.3rem"
+            fontWeight="600"
+            color="primary.main"
+            lineHeight="1"
+          >
             {calculateDiscount(price, off)}
           </SemiSpan>
 

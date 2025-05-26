@@ -17,7 +17,7 @@ import { currency, isValidProp } from "@utils/utils";
 
 // STYLED COMPONENTS
 const Wrapper = styled.div.withConfig({
-  shouldForwardProp: (prop) => isValidProp(prop)
+  shouldForwardProp: (prop) => isValidProp(prop),
 })`
   display: flex;
   overflow: hidden;
@@ -31,7 +31,7 @@ const Wrapper = styled.div.withConfig({
   }
   .title {
     overflow: hidden;
-    white-space: nowrap;
+    white-space: wrap;
     text-overflow: ellipsis;
   }
 
@@ -70,7 +70,7 @@ export default function ProductCard7({
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { qty: amount, name, price, imgUrl, id }
+      payload: { qty: amount, name, price, imgUrl, id },
     });
   };
 
@@ -88,15 +88,26 @@ export default function ProductCard7({
         minWidth="0px"
         flexDirection="column"
         className="product-details"
-        justifyContent="space-between">
+        justifyContent="space-between"
+      >
         <Link href={`/product/${slug}`}>
-          <Typography className="title" fontWeight="500" fontSize="18px" mb="0.5rem">
+          <Typography
+            className="title"
+            fontWeight="500"
+            fontSize="18px"
+            mb="0.5rem"
+          >
             {name}
           </Typography>
         </Link>
 
         <Box position="absolute" right="1rem" top="1rem">
-          <IconButton color="gray.600" padding="4px" ml="12px" onClick={handleCartAmountChange(0)}>
+          <IconButton
+            color="gray.600"
+            padding="4px"
+            ml="12px"
+            onClick={handleCartAmountChange(0)}
+          >
             <IconX size={18} />
           </IconButton>
         </Box>
@@ -120,7 +131,8 @@ export default function ProductCard7({
               variant="outlined"
               disabled={qty === 1}
               borderColor="primary.light"
-              onClick={handleCartAmountChange(qty - 1)}>
+              onClick={handleCartAmountChange(qty - 1)}
+            >
               <IconMinus size={16} />
             </Button>
 
@@ -134,7 +146,8 @@ export default function ProductCard7({
               color="primary"
               variant="outlined"
               borderColor="primary.light"
-              onClick={handleCartAmountChange(qty + 1)}>
+              onClick={handleCartAmountChange(qty + 1)}
+            >
               <IconPlus size={16} />
             </Button>
           </FlexBox>

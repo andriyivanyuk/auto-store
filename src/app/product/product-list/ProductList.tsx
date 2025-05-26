@@ -74,7 +74,7 @@ export default function ProductList({ sortOptions, products }: Props) {
           </Box>
 
           <Paragraph color="text.muted" mr="0.5rem">
-            View:
+            Переглянути:
           </Paragraph>
 
           <IconButton onClick={toggleView("grid")}>
