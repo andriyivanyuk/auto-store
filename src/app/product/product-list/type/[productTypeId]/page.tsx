@@ -20,9 +20,7 @@ export default async function ProductListDynamicPage({ params }: Props) {
   const cookieStore = await cookies();
   const storeId = cookieStore.get("storeId")?.value;
 
-  const filteredProducts = [];
   const products = await fetchProductsByCategory(params.productTypeId, storeId);
-  console.log(products);
 
   return (
     <Box pt="20px">

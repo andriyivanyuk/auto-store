@@ -54,9 +54,8 @@ export const fetchProductsByCategory = async (
   }
 };
 
-export const fetchProductById = async (productId) => {
+export const fetchProductById = async (productId: string, storeId: string) => {
   try {
-    const storeId = getStoreIdFromCookie();
     if (!storeId) {
       throw new Error("Store ID not found in cookies");
     }
