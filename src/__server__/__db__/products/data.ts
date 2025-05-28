@@ -1,4 +1,3 @@
-import dbProducts from "@data/db";
 import { products as market1 } from "../market-1/data";
 import { products as healthBeauty } from "../health-beauty/data";
 import {
@@ -12,7 +11,6 @@ const productList = [
   ...market1,
   ...relatedProducts,
   ...frequentlyBoughtData,
-  ...dbProducts,
 ];
 
 // get unique products from prouct list
