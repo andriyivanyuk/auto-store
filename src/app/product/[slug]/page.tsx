@@ -15,14 +15,10 @@ export default async function ProductDetails({ params }: Props) {
   const cookieStore = await cookies();
   const storeId = cookieStore.get("storeId")?.value;
 
-  const [product, shops, relatedProducts, frequentlyBought] = await Promise.all(
-    [
-      fetchProductById(slug, storeId),
-      api.getAvailableShop(),
-      api.getRelatedProducts(),
-      api.getFrequentlyBought(),
-    ]
-  );
+  const [product, shops] = await Promise.all([
+    fetchProductById(slug, storeId),
+    api.getAvailableShop(),
+  ]);
 
   return (
     <Fragment>
@@ -35,8 +31,8 @@ export default async function ProductDetails({ params }: Props) {
 
       <ProductView
         shops={shops}
-        relatedProducts={relatedProducts}
-        frequentlyBought={frequentlyBought}
+        description={product.description}
+        attributes={product.attributes}
       />
     </Fragment>
   );

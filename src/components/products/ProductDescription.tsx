@@ -1,17 +1,30 @@
 import Typography, { H3 } from "@component/Typography";
+import Box from "@component/Box";
+import { ProductAttribute } from "interfaces/productResponse";
 
-export default function ProductDescription() {
+interface Props {
+  description: string;
+  attributes: ProductAttribute[];
+}
+
+export default function ProductDescription({ description, attributes }: Props) {
   return (
     <div>
-      <H3 mb="1rem">Specification:</H3>
-      <Typography>
-        Brand: Beats <br />
-        Model: S450 <br />
-        Wireless Bluetooth Headset <br />
-        FM Frequency Response: 87.5 – 108 MHz <br />
-        Feature: FM Radio, Card Supported (Micro SD / TF) <br />
-        Made in China <br />
-      </Typography>
+      <H3 mb="1rem">Опис товару:</H3>
+
+      <Box style={{ whiteSpace: "pre-line", marginBottom: "2rem" }}>
+        <Typography>{description}</Typography>
+      </Box>
+
+      <H3 mb="1rem">Характеристики:</H3>
+
+      <ul style={{ paddingLeft: "1.5rem" }}>
+        {attributes.map((attr, index) => (
+          <li key={index} style={{ marginBottom: "0.5rem" }}>
+            <strong>{attr.key}:</strong> {attr.values.join(", ")}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

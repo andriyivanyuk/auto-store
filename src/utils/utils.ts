@@ -51,7 +51,9 @@ export const renderProductCount = (
 
   if (endNumber > totalProductLenth) endNumber = totalProductLenth;
 
-  return `Showing ${startNumber + 1}-${endNumber} of ${totalProductLenth} products`;
+  return `Showing ${
+    startNumber + 1
+  }-${endNumber} of ${totalProductLenth} products`;
 };
 
 /**
@@ -74,14 +76,11 @@ export function calculateDiscount(price: number, discount: number) {
  */
 
 export function currency(price: number, fraction: number = 2) {
-  // const { publicRuntimeConfig } = getConfig();
-  // currency: publicRuntimeConfig.currency,
-
-  const formatCurrency = new Intl.NumberFormat(undefined, {
-    currency: "USD",
+  const formatCurrency = new Intl.NumberFormat("uk-UA", {
+    currency: "UAH",
     style: "currency",
     maximumFractionDigits: fraction,
-    minimumFractionDigits: fraction
+    minimumFractionDigits: fraction,
   });
 
   return formatCurrency.format(price);

@@ -98,12 +98,14 @@ export default function ProductCard9({ product }: ProductCard9Props) {
         {/* Image */}
         <Grid item md={3} sm={4} xs={12}>
           <Box position="relative">
-            <Image
-              src={imgUrl}
-              alt={title}
-              width="100%"
-              borderRadius="0.5rem"
-            />
+            <Link href={`/product/${product_id}`}>
+              <Image
+                src={imgUrl}
+                alt={title}
+                width="100%"
+                borderRadius="0.5rem"
+              />
+            </Link>
           </Box>
         </Grid>
 

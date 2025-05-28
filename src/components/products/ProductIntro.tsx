@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 
@@ -104,25 +103,17 @@ export default function ProductIntro({ images, title, price, id }: Props) {
         <Grid item md={6} xs={12} alignItems="center">
           <H1 mb="1rem">{title}</H1>
 
-          <FlexBox alignItems="center" mb="1rem">
+          {/* <FlexBox alignItems="center" mb="1rem">
             <SemiSpan>Brand:</SemiSpan>
             <H6 ml="8px">Ziaomi</H6>
-          </FlexBox>
-
-          <FlexBox alignItems="center" mb="1rem">
-            <SemiSpan>Rated:</SemiSpan>
-            <Box ml="8px" mr="8px">
-              <Rating color="warn" value={4} outof={5} />
-            </Box>
-            <H6>(50)</H6>
-          </FlexBox>
+          </FlexBox> */}
 
           <Box mb="24px">
             <H2 color="primary.main" mb="4px" lineHeight="1">
               {currency(price)}
             </H2>
 
-            <SemiSpan color="inherit">Stock Available</SemiSpan>
+            <SemiSpan color="inherit">Є в наявності</SemiSpan>
           </Box>
 
           {!cartItem?.qty ? (
@@ -133,7 +124,7 @@ export default function ProductIntro({ images, title, price, id }: Props) {
               variant="contained"
               onClick={handleCartAmountChange(1)}
             >
-              Add to Cart
+              Додати до кошика
             </Button>
           ) : (
             <FlexBox alignItems="center" mb="36px">
@@ -162,15 +153,6 @@ export default function ProductIntro({ images, title, price, id }: Props) {
               </Button>
             </FlexBox>
           )}
-
-          <FlexBox alignItems="center" mb="1rem">
-            <SemiSpan>Sold By:</SemiSpan>
-            <Link href="/shops/scarlett-beauty">
-              <H6 lineHeight="1" ml="8px">
-                Mobile Store
-              </H6>
-            </Link>
-          </FlexBox>
         </Grid>
       </Grid>
     </Box>
