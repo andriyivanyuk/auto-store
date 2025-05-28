@@ -17,17 +17,28 @@ export default function NotFound() {
       minHeight="100vh"
       alignItems="center"
       flexDirection="column"
-      justifyContent="center">
-      <Image src="/assets/images/illustrations/404.svg" maxWidth="320px" width="100%" mb="2rem" />
+      justifyContent="center"
+    >
+      <Image
+        src="/assets/images/illustrations/404.svg"
+        maxWidth="320px"
+        width="100%"
+        mb="2rem"
+      />
 
       <FlexBox flexWrap="wrap">
-        <Button variant="outlined" color="primary" m="0.5rem" onClick={handleGoBack}>
-          Go Back
+        <Button
+          variant="outlined"
+          color="primary"
+          m="0.5rem"
+          onClick={handleGoBack}
+        >
+          Назад
         </Button>
 
         <Link href="/">
           <Button variant="contained" color="primary" m="0.5rem">
-            Go to Home
+            На головну
           </Button>
         </Link>
       </FlexBox>

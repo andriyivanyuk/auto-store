@@ -76,12 +76,11 @@ export function calculateDiscount(price: number, discount: number) {
  */
 
 export function currency(price: number, fraction: number = 2) {
-  const formatCurrency = new Intl.NumberFormat("uk-UA", {
-    currency: "UAH",
-    style: "currency",
+  const formatted = new Intl.NumberFormat("uk-UA", {
     maximumFractionDigits: fraction,
     minimumFractionDigits: fraction,
-  });
+    useGrouping: true,
+  }).format(price);
 
-  return formatCurrency.format(price);
+  return `${formatted} ₴`;
 }

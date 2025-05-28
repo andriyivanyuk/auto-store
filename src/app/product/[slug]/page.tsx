@@ -9,8 +9,12 @@ interface Props {
   params: { slug: string };
 }
 
-export default async function ProductDetails({ params }: Props) {
-  const { slug } = params;
+export const dynamicParams = true;
+
+export default async function ProductDetails(props: Props) {
+  const { params } = props;
+
+  const { slug } = await params;
 
   const cookieStore = await cookies();
   const storeId = cookieStore.get("storeId")?.value;
@@ -28,7 +32,6 @@ export default async function ProductDetails({ params }: Props) {
         title={product.title}
         images={product.images}
       />
-
       <ProductView
         shops={shops}
         description={product.description}

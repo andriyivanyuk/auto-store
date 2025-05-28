@@ -3,11 +3,7 @@ import ProductList from "../../ProductList";
 import { fetchProductsByCategory } from "services/apiService";
 import { cookies } from "next/headers";
 
-type Props = {
-  params: {
-    productTypeId: string;
-  };
-};
+export const dynamicParams = true;
 
 const sortOptions = [
   { label: "Relevance", value: "Relevance" },
@@ -16,11 +12,17 @@ const sortOptions = [
   { label: "Price High to Low", value: "Price High to Low" },
 ];
 
-export default async function ProductListDynamicPage({ params }: Props) {
+export default async function ProductListDynamicPage({
+  params,
+}: {
+  params: { productTypeId: string };
+}) {
+  const { productTypeId } = await params;
+
   const cookieStore = await cookies();
   const storeId = cookieStore.get("storeId")?.value;
 
-  const products = await fetchProductsByCategory(params.productTypeId, storeId);
+  const products = await fetchProductsByCategory(productTypeId, storeId);
 
   return (
     <Box pt="20px">
