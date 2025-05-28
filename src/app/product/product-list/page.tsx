@@ -10,8 +10,6 @@ export default function ProductListResult() {
 }
 
 const sortOptions = [
-  { label: "Relevance", value: "Relevance" },
-  { label: "Date", value: "Date" },
-  { label: "Price Low to High", value: "Price Low to High" },
-  { label: "Price High to Low", value: "Price High to Low" },
+  { label: "Від низької до високої", value: "Від низької до високої" },
+  { label: "Від високої до низької", value: "Від високої до низької" },
 ];

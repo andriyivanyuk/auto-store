@@ -6,7 +6,8 @@ import { CarouselCard1 } from "@component/carousel-cards";
 import api from "@utils/__api__/market-1";
 
 export default async function Section1() {
-  const carouselData = await api.getMainCarousel();
+  // const carouselData = await api.getMainCarousel();
+  const carouselData = [];
 
   return (
     <Box bg="gray.white" mb="3.75rem">

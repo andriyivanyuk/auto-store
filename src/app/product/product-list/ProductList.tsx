@@ -9,17 +9,14 @@ import Card from "@component/Card";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("@component/Select"), { ssr: false });
 
-import Icon from "@component/icon/Icon";
 import Grid from "@component/grid/Grid";
 import FlexBox from "@component/FlexBox";
 import { IconButton } from "@component/buttons";
-import Sidenav from "@component/sidenav/Sidenav";
-import { H5, Paragraph } from "@component/Typography";
+import { Paragraph } from "@component/Typography";
 import ProductGridView from "@component/products/ProductCard1List";
 import ProductListView from "@component/products/ProductCard9List";
-import ProductFilterCard from "@component/products/ProductFilterCard";
 import useWindowSize from "@hook/useWindowSize";
-import db from "@data/db";
+
 import { SortOption } from "interfaces/sortOption";
 import { ProductListResponse } from "interfaces/productListResponse";
 
@@ -33,19 +30,15 @@ export default function ProductList({ sortOptions, products }: Props) {
   const width = useWindowSize();
 
   const [selectedSort, setSelectedSort] = useState<SortOption>(sortOptions[0]);
-
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<"grid" | "list">("grid");
 
-  const handleOpenSidenav = useCallback(() => setOpen(true), []);
-  const handleCloseSidenav = useCallback(() => setOpen(false), []);
-
-  const isTablet = width < 1025;
   const toggleView = useCallback((v: any) => () => setView(v), []);
-
   const handleSortChange = useCallback((option: SortOption) => {
     if (option) setSelectedSort(option);
   }, []);
+
+  const isTablet = width < 1025;
 
   return (
     <Fragment>
@@ -73,49 +66,40 @@ export default function ProductList({ sortOptions, products }: Props) {
             />
           </Box>
 
-          <Paragraph color="text.muted" mr="0.5rem">
-            Переглянути:
-          </Paragraph>
+          {/* Показывать кнопки только на десктопі */}
+          {!isTablet && (
+            <>
+              <Paragraph color="text.muted" mr="0.5rem">
+                Переглянути:
+              </Paragraph>
 
-          <IconButton onClick={toggleView("grid")}>
-            <IconLayoutGrid
-              size={22}
-              color={
-                view === "grid" ? theme.colors.primary.main : "currentColor"
-              }
-            />
-          </IconButton>
+              <IconButton onClick={toggleView("grid")}>
+                <IconLayoutGrid
+                  size={22}
+                  color={
+                    view === "grid" ? theme.colors.primary.main : "currentColor"
+                  }
+                />
+              </IconButton>
 
-          <IconButton onClick={toggleView("list")}>
-            <IconList
-              size={22}
-              color={
-                view === "list" ? theme.colors.primary.main : "currentColor"
-              }
-            />
-          </IconButton>
-
-          {isTablet && (
-            <Sidenav
-              position="left"
-              open={open}
-              scroll={true}
-              onClose={handleCloseSidenav}
-              handle={
-                <IconButton onClick={handleOpenSidenav}>
-                  <Icon>options</Icon>
-                </IconButton>
-              }
-            >
-              <ProductFilterCard />
-            </Sidenav>
+              <IconButton onClick={toggleView("list")}>
+                <IconList
+                  size={22}
+                  color={
+                    view === "list" ? theme.colors.primary.main : "currentColor"
+                  }
+                />
+              </IconButton>
+            </>
           )}
         </FlexBox>
       </FlexBox>
 
       <Grid container spacing={6}>
         <Grid item lg={12} xs={12}>
-          {view === "grid" ? (
+          {isTablet ? (
+            <ProductListView products={products} />
+          ) : view === "grid" ? (
             <ProductGridView products={products} />
           ) : (
             <ProductListView products={products} />

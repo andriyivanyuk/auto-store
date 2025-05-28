@@ -82,6 +82,6 @@ export default function MobileNavigationBar() {
 
 const list = [
   { title: "Головна", icon: "home", href: "/" },
-  { title: "Категорії", icon: "category", href: "/mobile-category-nav" },
+  { title: "Категорії", icon: "category", href: "/product/mobile-view" },
   { title: "Кошик", icon: "bag", href: "/cart" },
 ];

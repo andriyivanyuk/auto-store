@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { IconChevronDown, IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import debounce from "lodash/debounce";
 
 import Box from "@component/Box";
-import Menu from "@component/menu/Menu";
 import Card from "@component/Card";
-import FlexBox from "@component/FlexBox";
 import MenuItem from "@component/MenuItem";
 import { Span } from "@component/Typography";
 import TextField from "@component/text-field";
@@ -78,29 +76,8 @@ export default function SearchInputWithCategory() {
           fullWidth
           onChange={handleSearch}
           className="search-field"
-          placeholder="Search and hit enter..."
+          placeholder="Пошук..."
         />
-
-        <Menu
-          direction="right"
-          className="category-dropdown"
-          handler={(openMenu) => (
-            <FlexBox
-              className="dropdown-handler"
-              alignItems="center"
-              onClick={openMenu}
-            >
-              <span>{category}</span>
-              <IconChevronDown size={18} stroke={1.5} />
-            </FlexBox>
-          )}
-        >
-          {categories.map((item) => (
-            <MenuItem key={item} onClick={handleCategoryChange(item)}>
-              {item}
-            </MenuItem>
-          ))}
-        </Menu>
       </StyledSearchBox>
 
       {/* SEARCH RESULT */}

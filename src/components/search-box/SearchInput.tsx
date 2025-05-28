@@ -43,7 +43,7 @@ export default function SearchInput() {
           fullWidth
           onChange={handleSearch}
           className="search-field"
-          placeholder="Search and hit enter..."
+          placeholder="Пошук..."
         />
 
         <Button className="search-button" variant="contained" color="primary">
@@ -56,7 +56,14 @@ export default function SearchInput() {
       </SearchBoxStyle>
 
       {!!resultList.length && (
-        <Card position="absolute" top="100%" py="0.5rem" width="100%" boxShadow="large" zIndex={99}>
+        <Card
+          position="absolute"
+          top="100%"
+          py="0.5rem"
+          width="100%"
+          boxShadow="large"
+          zIndex={99}
+        >
           {resultList.map((item) => (
             <Link href={`/product/search/${item}`} key={item}>
               <MenuItem key={item}>
@@ -70,4 +77,9 @@ export default function SearchInput() {
   );
 }
 
-const dummySearchResult = ["Macbook Air 13", "Ksus K555LA", "Acer Aspire X453", "iPad Mini 3"];
+const dummySearchResult = [
+  "Macbook Air 13",
+  "Ksus K555LA",
+  "Acer Aspire X453",
+  "iPad Mini 3",
+];

@@ -26,7 +26,7 @@ export default function ProductListView({ products }: Props) {
         mt="32px"
       >
         <SemiSpan>Показано 1–{products.length} із 1.3k Products</SemiSpan>
-        <Pagination pageCount={10} />
+        {/* <Pagination pageCount={10} /> */}
       </FlexBox>
     </Fragment>
   );

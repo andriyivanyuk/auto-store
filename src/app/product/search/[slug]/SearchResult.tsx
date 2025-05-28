@@ -13,11 +13,8 @@ import FlexBox from "@component/FlexBox";
 import { IconButton } from "@component/buttons";
 import Sidenav from "@component/sidenav/Sidenav";
 import { H5, Paragraph } from "@component/Typography";
-import ProductGridView from "@component/products/ProductCard1List";
-import ProductListView from "@component/products/ProductCard9List";
 import ProductFilterCard from "@component/products/ProductFilterCard";
 import useWindowSize from "@hook/useWindowSize";
-import db from "@data/db";
 
 // ==============================================================
 interface Props {
@@ -48,7 +45,8 @@ export default function SearchResult({ sortOptions }: Props) {
         flexWrap="wrap"
         borderRadius={12}
         alignItems="center"
-        justifyContent="space-between">
+        justifyContent="space-between"
+      >
         <div>
           <H5>Searching for “ mobile phone ”</H5>
           <Paragraph color="text.muted">48 results found</Paragraph>
@@ -60,7 +58,11 @@ export default function SearchResult({ sortOptions }: Props) {
           </Paragraph>
 
           <Box flex="1 1 0" mr="1.75rem" minWidth="150px">
-            <Select placeholder="Short by" defaultValue={sortOptions[0]} options={sortOptions} />
+            <Select
+              placeholder="Short by"
+              defaultValue={sortOptions[0]}
+              options={sortOptions}
+            />
           </Box>
 
           <Paragraph color="text.muted" mr="0.5rem">
@@ -70,14 +72,18 @@ export default function SearchResult({ sortOptions }: Props) {
           <IconButton onClick={toggleView("grid")}>
             <IconLayoutGrid
               size={22}
-              color={view === "grid" ? theme.colors.primary.main : "currentColor"}
+              color={
+                view === "grid" ? theme.colors.primary.main : "currentColor"
+              }
             />
           </IconButton>
 
           <IconButton onClick={toggleView("list")}>
             <IconList
               size={22}
-              color={view === "list" ? theme.colors.primary.main : "currentColor"}
+              color={
+                view === "list" ? theme.colors.primary.main : "currentColor"
+              }
             />
           </IconButton>
 
@@ -91,7 +97,8 @@ export default function SearchResult({ sortOptions }: Props) {
                 <IconButton onClick={handleOpenSidenav}>
                   <Icon>options</Icon>
                 </IconButton>
-              }>
+              }
+            >
               <ProductFilterCard />
             </Sidenav>
           )}
@@ -103,13 +110,13 @@ export default function SearchResult({ sortOptions }: Props) {
           <ProductFilterCard />
         </Grid>
 
-        <Grid item lg={9} xs={12}>
+        {/* <Grid item lg={9} xs={12}>
           {view === "grid" ? (
             <ProductGridView products={db.slice(95, 104)} />
           ) : (
             <ProductListView products={db.slice(95, 104)} />
           )}
-        </Grid>
+        </Grid> */}
       </Grid>
     </Fragment>
   );

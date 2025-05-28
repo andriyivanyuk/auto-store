@@ -3,7 +3,7 @@ export const aboutLinks = [
   "Our Stores",
   "Our Cares",
   "Terms & Conditions",
-  "Privacy Policy"
+  "Privacy Policy",
 ];
 
 export const customerCareLinks = [
@@ -11,13 +11,10 @@ export const customerCareLinks = [
   "How to Buy",
   "Track Your Order",
   "Corporate & Bulk Purchasing",
-  "Returns & Refunds"
+  "Returns & Refunds",
 ];
 
 export const iconList = [
   { iconName: "facebook", url: "https://www.facebook.com/UILibOfficial" },
-  { iconName: "twitter", url: "/" },
-  { iconName: "youtube", url: "https://www.youtube.com/channel/UCsIyD-TSO1wQFz-n2Y4i3Rg" },
-  { iconName: "google", url: "/" },
-  { iconName: "instagram", url: "/" }
+  { iconName: "instagram", url: "/" },
 ];

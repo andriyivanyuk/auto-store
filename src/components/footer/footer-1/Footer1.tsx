@@ -8,10 +8,12 @@ import FlexBox from "@component/FlexBox";
 import AppStore from "@component/AppStore";
 import Container from "@component/Container";
 import Typography, { Paragraph } from "@component/Typography";
+
 // STYLED COMPONENTS
 import { StyledLink } from "./styles";
+
 // CUSTOM DATA
-import { aboutLinks, customerCareLinks, iconList } from "./data";
+import { iconList } from "./data";
 
 export default function Footer1() {
   return (
@@ -20,51 +22,26 @@ export default function Footer1() {
         <Container p="1rem" color="white">
           <Box py="5rem" overflow="hidden">
             <Grid container spacing={6}>
-              <Grid item lg={4} md={6} sm={6} xs={12}>
+              <Grid item lg={6} md={6} sm={6} xs={12}>
                 <Link href="/">
                   <Image alt="logo" mb="1rem" src="/assets/images/logo.svg" />
                 </Link>
 
                 <Paragraph mb="1.25rem" color="gray.500" maxWidth="320px">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in
-                  gravida. Sit diam duis mauris nulla cursus. Erat et lectus vel ut sollicitudin
-                  elit at amet.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Auctor libero id et, in gravida. Sit diam duis mauris nulla
+                  cursus. Erat et lectus vel ut sollicitudin elit at amet.
                 </Paragraph>
-
-                <AppStore />
               </Grid>
 
-              <Grid item lg={2} md={6} sm={6} xs={12}>
-                <Typography mb="1.25rem" lineHeight="1" fontSize={20} fontWeight="600">
-                  About Us
-                </Typography>
-
-                <div>
-                  {aboutLinks.map((item, ind) => (
-                    <StyledLink href="/" key={ind}>
-                      {item}
-                    </StyledLink>
-                  ))}
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={6} sm={6} xs={12}>
-                <Typography mb="1.25rem" lineHeight="1" fontSize={20} fontWeight="600">
-                  Customer Care
-                </Typography>
-
-                <div>
-                  {customerCareLinks.map((item, ind) => (
-                    <StyledLink href="/" key={ind}>
-                      {item}
-                    </StyledLink>
-                  ))}
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={6} sm={6} xs={12}>
-                <Typography mb="1.25rem" lineHeight="1" fontSize={20} fontWeight="600">
-                  Contact Us
+              <Grid item lg={6} md={6} sm={6} xs={12}>
+                <Typography
+                  mb="1.25rem"
+                  lineHeight="1"
+                  fontSize={20}
+                  fontWeight="600"
+                >
+                  Контакти
                 </Typography>
 
                 <Typography py="0.3rem" color="gray.500">
@@ -85,8 +62,15 @@ export default function Footer1() {
                       href={item.url}
                       target="_blank"
                       key={item.iconName}
-                      rel="noreferrer noopenner">
-                      <Box m="5px" p="10px" size="small" borderRadius="50%" bg="rgba(0,0,0,0.2)">
+                      rel="noreferrer noopenner"
+                    >
+                      <Box
+                        m="5px"
+                        p="10px"
+                        size="small"
+                        borderRadius="50%"
+                        bg="rgba(0,0,0,0.2)"
+                      >
                         <Icon size="12px" defaultColor="auto">
                           {item.iconName}
                         </Icon>
@@ -98,6 +82,18 @@ export default function Footer1() {
             </Grid>
           </Box>
         </Container>
+      </Box>
+      {/* Footer bottom center text */}
+      <Box bg="#0F3460" py="1rem" textAlign="center">
+        <Link href="/" passHref>
+          <Typography
+            fontSize="14px"
+            color="gray.500"
+            style={{ textDecoration: "none", cursor: "pointer" }}
+          >
+            Розроблено Digital Engineers
+          </Typography>
+        </Link>
       </Box>
     </footer>
   );

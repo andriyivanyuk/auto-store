@@ -16,11 +16,11 @@ export default async function Market1() {
       <main>
         <StoreIdSetter />
         <Section1 />
-        <Section2 />
+        {/* <Section2 />
         <Section8 />
         <Section10 />
-        <Section11 />
-        <Section12 />
+        <Section11 /> */}
+        {/* <Section12 /> */}
       </main>
     </AppLayout>
   );

@@ -10,12 +10,11 @@ import ProductDescription from "@component/products/ProductDescription";
 import { ProductAttribute } from "interfaces/productResponse";
 
 type Props = {
-  shops: Shop[];
   description: string;
   attributes: ProductAttribute[];
 };
 
-export default function ProductView({ shops, description, attributes }: Props) {
+export default function ProductView({ description, attributes }: Props) {
   const [selectedOption, setSelectedOption] = useState("description");
   const handleOptionClick = (opt: any) => () => setSelectedOption(opt);
 

@@ -36,7 +36,7 @@ const Wrapper = styled(Card)`
 
     .title {
       overflow: hidden;
-      white-space: nowrap;
+      white-space: wrap;
       text-overflow: ellipsis;
     }
   }
