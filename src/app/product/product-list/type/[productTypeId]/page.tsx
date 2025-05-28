@@ -5,6 +5,10 @@ import { cookies } from "next/headers";
 
 export const dynamicParams = true;
 
+interface Props {
+  params: { productTypeId: string };
+}
+
 const sortOptions = [
   { label: "Relevance", value: "Relevance" },
   { label: "Date", value: "Date" },
@@ -12,11 +16,8 @@ const sortOptions = [
   { label: "Price High to Low", value: "Price High to Low" },
 ];
 
-export default async function ProductListDynamicPage({
-  params,
-}: {
-  params: { productTypeId: string };
-}) {
+export default async function ProductListDynamicPage(props: Props) {
+  const { params } = props;
   const { productTypeId } = await params;
 
   const cookieStore = await cookies();
