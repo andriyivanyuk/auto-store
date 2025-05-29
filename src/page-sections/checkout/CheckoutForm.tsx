@@ -32,7 +32,7 @@ const initialValues = {
   billing_zip: "",
   billing_country: "",
   billing_address1: "",
-  billing_address2: ""
+  billing_address2: "",
 };
 
 const checkoutSchema = yup.object({
@@ -55,7 +55,6 @@ export default function CheckoutForm() {
   const [sameAsShipping, setSameAsShipping] = useState(false);
 
   const handleFormSubmit = async (values: typeof initialValues) => {
-    console.log(values);
     router.push("/payment");
   };
 
@@ -71,8 +70,17 @@ export default function CheckoutForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={checkoutSchema}
-      onSubmit={handleFormSubmit}>
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+      onSubmit={handleFormSubmit}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        setFieldValue,
+      }) => (
         <form onSubmit={handleSubmit}>
           <Card1 mb="2rem">
             <Typography fontWeight="600" mb="1rem">
@@ -102,7 +110,9 @@ export default function CheckoutForm() {
                   onChange={handleChange}
                   name="shipping_contact"
                   value={values.shipping_contact}
-                  errorText={touched.shipping_contact && errors.shipping_contact}
+                  errorText={
+                    touched.shipping_contact && errors.shipping_contact
+                  }
                 />
 
                 <TextField
@@ -126,7 +136,9 @@ export default function CheckoutForm() {
                   onChange={handleChange}
                   name="shipping_address1"
                   value={values.shipping_address1}
-                  errorText={touched.shipping_address1 && errors.shipping_address1}
+                  errorText={
+                    touched.shipping_address1 && errors.shipping_address1
+                  }
                 />
               </Grid>
 
@@ -153,7 +165,9 @@ export default function CheckoutForm() {
                   onChange={handleChange}
                   name="shipping_company"
                   value={values.shipping_company}
-                  errorText={touched.shipping_company && errors.shipping_company}
+                  errorText={
+                    touched.shipping_company && errors.shipping_company
+                  }
                 />
 
                 <Select
@@ -161,8 +175,12 @@ export default function CheckoutForm() {
                   label="Country"
                   options={countryList}
                   value={values.shipping_country || "US"}
-                  errorText={touched.shipping_country && errors.shipping_country}
-                  onChange={(country) => setFieldValue("shipping_country", country)}
+                  errorText={
+                    touched.shipping_country && errors.shipping_country
+                  }
+                  onChange={(country) =>
+                    setFieldValue("shipping_country", country)
+                  }
                 />
 
                 <TextField
@@ -173,7 +191,9 @@ export default function CheckoutForm() {
                   onChange={handleChange}
                   name="shipping_address2"
                   value={values.shipping_address2}
-                  errorText={touched.shipping_address2 && errors.shipping_address2}
+                  errorText={
+                    touched.shipping_address2 && errors.shipping_address2
+                  }
                 />
               </Grid>
             </Grid>
@@ -215,7 +235,9 @@ export default function CheckoutForm() {
                     name="billing_contact"
                     onChange={handleChange}
                     value={values.billing_contact}
-                    errorText={touched.billing_contact && errors.billing_contact}
+                    errorText={
+                      touched.billing_contact && errors.billing_contact
+                    }
                   />
 
                   <TextField
@@ -239,7 +261,9 @@ export default function CheckoutForm() {
                     onChange={handleChange}
                     name="billing_address1"
                     value={values.billing_address1}
-                    errorText={touched.billing_address1 && errors.billing_address1}
+                    errorText={
+                      touched.billing_address1 && errors.billing_address1
+                    }
                   />
                 </Grid>
 
@@ -266,7 +290,9 @@ export default function CheckoutForm() {
                     name="billing_company"
                     onChange={handleChange}
                     value={values.billing_company}
-                    errorText={touched.billing_company && errors.billing_company}
+                    errorText={
+                      touched.billing_company && errors.billing_company
+                    }
                   />
 
                   <Select
@@ -274,8 +300,12 @@ export default function CheckoutForm() {
                     label="Country"
                     options={countryList}
                     value={values.billing_country || "US"}
-                    errorText={touched.billing_country && errors.billing_country}
-                    onChange={(country) => setFieldValue("billing_country", country)}
+                    errorText={
+                      touched.billing_country && errors.billing_country
+                    }
+                    onChange={(country) =>
+                      setFieldValue("billing_country", country)
+                    }
                   />
 
                   <TextField
@@ -286,7 +316,9 @@ export default function CheckoutForm() {
                     name="billing_address2"
                     onChange={handleChange}
                     value={values.billing_address2}
-                    errorText={touched.billing_address2 && errors.billing_address2}
+                    errorText={
+                      touched.billing_address2 && errors.billing_address2
+                    }
                   />
                 </Grid>
               </Grid>
@@ -296,14 +328,24 @@ export default function CheckoutForm() {
           <Grid container spacing={7}>
             <Grid item sm={6} xs={12}>
               <Link href="/cart">
-                <Button variant="outlined" color="primary" type="button" fullWidth>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  type="button"
+                  fullWidth
+                >
                   Back to Cart
                 </Button>
               </Link>
             </Grid>
 
             <Grid item sm={6} xs={12}>
-              <Button variant="contained" color="primary" type="submit" fullWidth>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                fullWidth
+              >
                 Proceed to Payment
               </Button>
             </Grid>

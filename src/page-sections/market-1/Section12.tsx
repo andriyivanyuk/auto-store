@@ -5,10 +5,34 @@ import FlexBox from "@component/FlexBox";
 import Container from "@component/Container";
 import { H4, SemiSpan } from "@component/Typography";
 // API FUNCTIONS
-import api from "@utils/__api__/market-1";
 
 export default async function Section12() {
-  const serviceList = await api.getServiceList();
+  const serviceList = [
+    {
+      id: "5f9bd366-9583-4e6d-9b11-abe74b9c5d96",
+      icon: "truck",
+      title: "Доставка по всій Україні",
+      description: null,
+    },
+    {
+      id: "121cffea-6972-41f8-8094-98dca22d17bb",
+      icon: "credit",
+      title: "Безпечна онлайн-оплата",
+      description: null,
+    },
+    {
+      id: "5b94f5d8-71ec-40a6-b5b8-401286deba24",
+      icon: "shield",
+      title: "Гарантія якості та повернення",
+      description: null,
+    },
+    {
+      id: "8c4bb18f-d914-4269-9c7c-3c6728ba33e9",
+      icon: "phone",
+      title: "Робочі години (9:00 – 20:00)",
+      description: null,
+    },
+  ];
 
   return (
     <Container mb="70px">
@@ -23,13 +47,15 @@ export default async function Section12() {
               borderRadius={8}
               boxShadow="border"
               alignItems="center"
-              flexDirection="column">
+              flexDirection="column"
+            >
               <FlexBox
                 size="64px"
                 bg="gray.200"
                 alignItems="center"
                 borderRadius="300px"
-                justifyContent="center">
+                justifyContent="center"
+              >
                 <Icon color="secondary" size="1.75rem">
                   {item.icon}
                 </Icon>

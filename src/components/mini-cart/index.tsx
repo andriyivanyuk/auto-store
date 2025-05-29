@@ -23,12 +23,17 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
   const handleCartAmountChange = (amount: number, product: any) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { ...product, qty: amount }
+      payload: { ...product, qty: amount },
     });
   };
 
   const getTotalPrice = () => {
-    return state.cart.reduce((accumulator, item) => accumulator + item.price * item.qty, 0) || 0;
+    return (
+      state.cart.reduce(
+        (accumulator, item) => accumulator + item.price * item.qty,
+        0
+      ) || 0
+    );
   };
 
   return (
@@ -37,7 +42,7 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
         <FlexBox alignItems="center" m="0px 20px" height="74px">
           <Icon size="1.5rem">bag</Icon>
           <Typography fontWeight={600} fontSize="16px" ml="0.5rem">
-            {state.cart.length} item
+            {state.cart.length} товар
           </Typography>
         </FlexBox>
 
@@ -48,10 +53,21 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
             alignItems="center"
             flexDirection="column"
             justifyContent="center"
-            height="calc(100% - 80px)">
-            <Image src="/assets/images/logos/shopping-bag.svg" width={90} height={90} alt="bonik" />
-            <Paragraph mt="1rem" color="text.muted" textAlign="center" maxWidth="200px">
-              Your shopping bag is empty. Start shopping
+            height="calc(100% - 80px)"
+          >
+            <Image
+              src="/assets/images/logos/shopping-bag.svg"
+              width={90}
+              height={90}
+              alt="bonik"
+            />
+            <Paragraph
+              mt="1rem"
+              color="text.muted"
+              textAlign="center"
+              maxWidth="200px"
+            >
+              Ваш кошик порожній. Почніть покупки
             </Paragraph>
           </FlexBox>
         )}
@@ -67,7 +83,8 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
                   variant="outlined"
                   borderRadius="300px"
                   borderColor="primary.light"
-                  onClick={handleCartAmountChange(item.qty + 1, item)}>
+                  onClick={handleCartAmountChange(item.qty + 1, item)}
+                >
                   <Icon size="1rem">plus</Icon>
                 </Button>
 
@@ -83,7 +100,8 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
                   borderRadius="300px"
                   borderColor="primary.light"
                   onClick={handleCartAmountChange(item.qty - 1, item)}
-                  disabled={item.qty === 1}>
+                  disabled={item.qty === 1}
+                >
                   <Icon size="1rem">minus</Icon>
                 </Button>
               </FlexBox>
@@ -108,7 +126,12 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
                   {currency(item.price, 0)} x {item.qty}
                 </Tiny>
 
-                <Typography fontWeight={600} fontSize="14px" color="primary.main" mt="4px">
+                <Typography
+                  fontWeight={600}
+                  fontSize="14px"
+                  color="primary.main"
+                  mt="4px"
+                >
                   {currency(item.qty * item.price)}
                 </Typography>
               </div>
@@ -117,7 +140,8 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
                 size="1rem"
                 ml="1.25rem"
                 className="clear-icon"
-                onClick={handleCartAmountChange(0, item)}>
+                onClick={handleCartAmountChange(0, item)}
+              >
                 close
               </Icon>
             </div>
@@ -129,14 +153,27 @@ export default function MiniCart({ toggleSidenav = () => {} }: MiniCartProps) {
       {state.cart.length > 0 && (
         <div className="actions">
           <Link href="/checkout">
-            <Button fullWidth color="primary" variant="contained" onClick={toggleSidenav}>
-              <Typography fontWeight={600}>Checkout Now ({currency(getTotalPrice())})</Typography>
+            <Button
+              fullWidth
+              color="primary"
+              variant="contained"
+              onClick={toggleSidenav}
+            >
+              <Typography fontWeight={600}>
+                Оформити замовлення ({currency(getTotalPrice())})
+              </Typography>
             </Button>
           </Link>
 
           <Link href="/cart">
-            <Button fullWidth color="primary" variant="outlined" mt="1rem" onClick={toggleSidenav}>
-              <Typography fontWeight={600}>View Cart</Typography>
+            <Button
+              fullWidth
+              color="primary"
+              variant="outlined"
+              mt="1rem"
+              onClick={toggleSidenav}
+            >
+              <Typography fontWeight={600}>Переглянути кошик</Typography>
             </Button>
           </Link>
         </div>

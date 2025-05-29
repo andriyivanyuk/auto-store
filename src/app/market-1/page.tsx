@@ -20,7 +20,7 @@ export default async function Market1() {
         <Section8 />
         <Section10 />
         <Section11 /> */}
-        {/* <Section12 /> */}
+        <Section12 />
       </main>
     </AppLayout>
   );

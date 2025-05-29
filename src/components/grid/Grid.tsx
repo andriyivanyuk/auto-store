@@ -26,7 +26,7 @@ export default function Grid({
       return cloneElement(child, {
         spacing: spacing,
         vertical_spacing: vertical_spacing,
-        horizontal_spacing: horizontal_spacing
+        horizontal_spacing: horizontal_spacing,
       });
     });
   }
@@ -37,7 +37,8 @@ export default function Grid({
       containerHeight={containerHeight}
       vertical_spacing={vertical_spacing}
       horizontal_spacing={horizontal_spacing}
-      {...props}>
+      {...props}
+    >
       {childList}
     </StyledGrid>
   );

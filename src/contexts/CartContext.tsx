@@ -28,11 +28,11 @@ interface ContextProps {
 }
 // ==============================================================
 
-const INITIAL_STATE = { cart: INITIAL_CART };
+const INITIAL_STATE = { cart: [] };
 
 export const CartContext = createContext<ContextProps>({
   state: INITIAL_STATE,
-  dispatch: () => {}
+  dispatch: () => {},
 });
 
 const reducer = (state: InitialState, action: CartAction) => {
@@ -45,13 +45,15 @@ const reducer = (state: InitialState, action: CartAction) => {
       if (updatedItem.qty < 1) {
         return {
           ...state,
-          cart: currentCart.filter((item) => item.id !== updatedItem.id)
+          cart: currentCart.filter((item) => item.id !== updatedItem.id),
         };
       }
 
       if (itemExists) {
         const updatedCart = currentCart.map((item) => {
-          return item.id === updatedItem.id ? { ...item, qty: updatedItem.qty } : item;
+          return item.id === updatedItem.id
+            ? { ...item, qty: updatedItem.qty }
+            : item;
         });
 
         return { ...state, cart: updatedCart };
@@ -59,7 +61,7 @@ const reducer = (state: InitialState, action: CartAction) => {
 
       return {
         ...state,
-        cart: [...currentCart, updatedItem]
+        cart: [...currentCart, updatedItem],
       };
 
     default:
