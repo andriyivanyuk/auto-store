@@ -2,6 +2,7 @@ import styled from "styled-components";
 // GLOBAL CUSTOM COMPONENTS
 import { Button } from "@component/buttons";
 import Typography from "@component/Typography";
+import Link from "next/link";
 
 // STYLED COMPONENT
 const StyledCarouselCard1 = styled.div`
@@ -59,10 +60,17 @@ interface Props {
   image: string;
   buttonText: string;
   description: string;
+  href?: string;
 }
 // ===============================================
 
-export default function CarouselCard1({ title, image, buttonText, description }: Props) {
+export default function CarouselCard1({
+  title,
+  image,
+  buttonText,
+  description,
+  href,
+}: Props) {
   return (
     <StyledCarouselCard1>
       <div className="content">
@@ -71,9 +79,16 @@ export default function CarouselCard1({ title, image, buttonText, description }:
           {description}
         </Typography>
 
-        <Button className="button-link" variant="contained" color="primary" p="1rem 1.5rem">
-          {buttonText}
-        </Button>
+        <Link href={href}>
+          <Button
+            className="button-link"
+            variant="contained"
+            color="primary"
+            p="1rem 1.5rem"
+          >
+            {buttonText}
+          </Button>
+        </Link>
       </div>
 
       <div className="image-holder">

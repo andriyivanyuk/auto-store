@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FeaturedProductListResponse } from "interfaces/featuredProductListResponse";
 import { FetchClientProductsParams } from "interfaces/fetchClientProductsParams";
 
 const BASE_URL = "https://admin-server-q7b6.onrender.com/api/client";
@@ -69,6 +70,25 @@ export const fetchProductById = async (productId: string, storeId: string) => {
     return response.data;
   } catch (error) {
     console.error("Помилка при отриманні деталей продукту:", error);
+    throw error;
+  }
+};
+
+export const fetchFeaturedProducts = async (
+  storeId: string
+): Promise<FeaturedProductListResponse[]> => {
+  try {
+    if (!storeId) throw new Error("Store ID not found");
+
+    const response = await api.get("/products/featured", {
+      headers: {
+        "x-store-id": storeId,
+      },
+    });
+
+    return response.data.products;
+  } catch (error) {
+    console.error("Помилка при отриманні топових продуктів:", error);
     throw error;
   }
 };
