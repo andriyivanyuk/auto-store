@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { IconShoppingCart, IconUser } from "@tabler/icons-react";
 
-import Login from "@sections/auth/Login";
-
 import Modal from "@component/modal/Modal";
 import FlexBox from "@component/FlexBox";
 import MiniCart from "@component/mini-cart";
@@ -47,7 +45,8 @@ export default function HeaderTwo({ className }: HeaderProps) {
           bg="primary.main"
           alignItems="center"
           borderRadius="300px"
-          justifyContent="center">
+          justifyContent="center"
+        >
           <Tiny color="white" fontWeight="600">
             {state.cart.length}
           </Tiny>
@@ -58,7 +57,12 @@ export default function HeaderTwo({ className }: HeaderProps) {
 
   return (
     <StyledHeader className={className}>
-      <Container display="flex" alignItems="center" justifyContent="space-between" height="100%">
+      <Container
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        height="100%"
+      >
         <FlexBox className="logo" alignItems="center" mr="1rem">
           <Link href="/">
             <Logo />
@@ -76,22 +80,18 @@ export default function HeaderTwo({ className }: HeaderProps) {
             size="small"
             bg="gray.200"
             borderRadius={8}
-            onClick={handleOpenLogin}>
+            onClick={handleOpenLogin}
+          >
             <IconUser size={16} stroke={1.5} />
           </IconButton>
-
-          <Modal open={loginOpen} onClose={handleCloseLogin}>
-            <div>
-              <Login />
-            </div>
-          </Modal>
 
           <Sidenav
             open={open}
             width={380}
             position="right"
             handle={CART_HANDLE}
-            onClose={handleCloseCart}>
+            onClose={handleCloseCart}
+          >
             <MiniCart />
           </Sidenav>
         </FlexBox>

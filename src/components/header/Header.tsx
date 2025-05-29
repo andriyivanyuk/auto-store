@@ -6,8 +6,6 @@ import dynamic from "next/dynamic";
 
 import { IconShoppingCart } from "@tabler/icons-react";
 
-import Login from "@sections/auth/Login";
-
 import Box from "@component/Box";
 import Modal from "@component/modal";
 import Icon from "@component/icon/Icon";
@@ -98,10 +96,6 @@ export default function Header({ isFixed, className }: HeaderProps) {
         </FlexBox>
 
         <FlexBox className="header-right" alignItems="center">
-          <Modal open={loginOpen} onClose={handleCloseLogin}>
-            <Login />
-          </Modal>
-
           <Sidenav
             open={open}
             width={380}

@@ -93,25 +93,6 @@ export const fetchFeaturedProducts = async (
   }
 };
 
-export const fetchProductParametersWithValues = async (productId) => {
-  const storeId = getStoreIdFromCookie();
-  const response = await api.get(
-    `/product-config/${productId}/parameters-with-values`,
-    {
-      headers: { "x-store-id": storeId },
-    }
-  );
-  return response.data;
-};
-
-export const fetchProductCombinations = async (productId) => {
-  const storeId = getStoreIdFromCookie();
-  const response = await api.get(`/product-config/${productId}/combinations`, {
-    headers: { "x-store-id": storeId },
-  });
-  return response.data;
-};
-
 export const fetchNovaPoshtaCities = async (query) => {
   try {
     const storeId = getStoreIdFromCookie();
