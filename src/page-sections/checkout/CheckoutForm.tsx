@@ -52,19 +52,10 @@ const checkoutSchema = yup.object({
 
 export default function CheckoutForm() {
   const router = useRouter();
-  const [sameAsShipping, setSameAsShipping] = useState(false);
 
   const handleFormSubmit = async (values: typeof initialValues) => {
     router.push("/payment");
   };
-
-  const handleCheckboxChange =
-    (values: typeof initialValues, setFieldValue: any) =>
-    ({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
-      setSameAsShipping(checked);
-      setFieldValue("same_as_shipping", checked);
-      setFieldValue("billing_name", checked ? values.shipping_name : "");
-    };
 
   return (
     <Formik
@@ -199,132 +190,6 @@ export default function CheckoutForm() {
             </Grid>
           </Card1>
 
-          <Card1 mb="2rem">
-            <Typography fontWeight="600" mb="1rem">
-              Billing Address
-            </Typography>
-
-            <CheckBox
-              color="secondary"
-              label="Same as shipping address"
-              mb={sameAsShipping ? "" : "1rem"}
-              onChange={handleCheckboxChange(values, setFieldValue)}
-            />
-
-            {!sameAsShipping && (
-              <Grid container spacing={7}>
-                <Grid item sm={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    mb="1rem"
-                    label="Full Name"
-                    placeholder="Full Name"
-                    name="billing_name"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.billing_name}
-                    errorText={touched.billing_name && errors.billing_name}
-                  />
-
-                  <TextField
-                    fullWidth
-                    mb="1rem"
-                    label="Phone Number"
-                    placeholder="Phone Number"
-                    onBlur={handleBlur}
-                    name="billing_contact"
-                    onChange={handleChange}
-                    value={values.billing_contact}
-                    errorText={
-                      touched.billing_contact && errors.billing_contact
-                    }
-                  />
-
-                  <TextField
-                    fullWidth
-                    mb="1rem"
-                    type="number"
-                    label="Zip Code"
-                    placeholder="Zip Code"
-                    name="billing_zip"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.billing_zip}
-                    errorText={touched.billing_zip && errors.billing_zip}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Address 1"
-                    placeholder="Address 1"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    name="billing_address1"
-                    value={values.billing_address1}
-                    errorText={
-                      touched.billing_address1 && errors.billing_address1
-                    }
-                  />
-                </Grid>
-
-                <Grid item sm={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    mb="1rem"
-                    type="email"
-                    placeholder="Email Address"
-                    onBlur={handleBlur}
-                    name="billing_email"
-                    label="Email Address"
-                    onChange={handleChange}
-                    value={values.billing_email}
-                    errorText={touched.billing_email && errors.billing_email}
-                  />
-
-                  <TextField
-                    fullWidth
-                    mb="1rem"
-                    label="Company"
-                    placeholder="Company"
-                    onBlur={handleBlur}
-                    name="billing_company"
-                    onChange={handleChange}
-                    value={values.billing_company}
-                    errorText={
-                      touched.billing_company && errors.billing_company
-                    }
-                  />
-
-                  <Select
-                    mb="1rem"
-                    label="Country"
-                    options={countryList}
-                    value={values.billing_country || "US"}
-                    errorText={
-                      touched.billing_country && errors.billing_country
-                    }
-                    onChange={(country) =>
-                      setFieldValue("billing_country", country)
-                    }
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Address 2"
-                    placeholder="Address 2"
-                    onBlur={handleBlur}
-                    name="billing_address2"
-                    onChange={handleChange}
-                    value={values.billing_address2}
-                    errorText={
-                      touched.billing_address2 && errors.billing_address2
-                    }
-                  />
-                </Grid>
-              </Grid>
-            )}
-          </Card1>
-
           <Grid container spacing={7}>
             <Grid item sm={6} xs={12}>
               <Link href="/cart">
@@ -334,7 +199,7 @@ export default function CheckoutForm() {
                   type="button"
                   fullWidth
                 >
-                  Back to Cart
+                  До Кошика
                 </Button>
               </Link>
             </Grid>
@@ -346,7 +211,7 @@ export default function CheckoutForm() {
                 type="submit"
                 fullWidth
               >
-                Proceed to Payment
+                Перейти до оплати
               </Button>
             </Grid>
           </Grid>
