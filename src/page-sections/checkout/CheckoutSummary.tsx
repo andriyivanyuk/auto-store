@@ -1,48 +1,30 @@
 "use client";
 
 import { Card1 } from "@component/Card1";
-import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
 import Typography from "@component/Typography";
 
-export default function CheckoutSummary() {
+interface Props {
+  deliverySelection: {
+    cityLabel: string;
+    branchLabel: string;
+  };
+}
+
+export default function CheckoutSummary({ deliverySelection }: Props) {
   return (
     <Card1>
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Підсумок:</Typography>
-
-        <FlexBox alignItems="flex-end">
-          <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-            $2610.
-          </Typography>
-
-          <Typography fontWeight="600" fontSize="14px" lineHeight="1">
-            00
-          </Typography>
-        </FlexBox>
-      </FlexBox>
-
-      <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
         <Typography color="text.hint">Доставка:</Typography>
-
-        <FlexBox alignItems="flex-end">
-          <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-            -
+        <FlexBox flexDirection="column" alignItems="flex-end">
+          <Typography fontSize="14px" fontWeight="500">
+            {deliverySelection.cityLabel || "-"}
+          </Typography>
+          <Typography fontSize="13px" color="text.secondary">
+            {deliverySelection.branchLabel || ""}
           </Typography>
         </FlexBox>
       </FlexBox>
-
-      <Divider mb="1rem" />
-
-      <Typography
-        fontSize="25px"
-        fontWeight="600"
-        lineHeight="1"
-        textAlign="right"
-        mb="1.5rem"
-      >
-        $2610.00
-      </Typography>
     </Card1>
   );
 }

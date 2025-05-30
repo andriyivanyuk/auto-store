@@ -93,50 +93,31 @@ export const fetchFeaturedProducts = async (
   }
 };
 
-export const fetchNovaPoshtaCities = async (query) => {
-  try {
-    const storeId = getStoreIdFromCookie();
-    if (!storeId) {
-      throw new Error("Store ID not found in cookies");
-    }
-
-    const response = await api.get("/cities", {
-      headers: {
-        "x-store-id": storeId,
-      },
-      params: {
-        q: query,
-      },
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error("Помилка при отриманні міст НП:", error);
-    throw error;
-  }
+export const fetchNovaPoshtaCities = async (query: string, storeId: string) => {
+  const response = await api.get("/cities", {
+    headers: {
+      "x-store-id": storeId,
+    },
+    params: {
+      q: query,
+    },
+  });
+  return response.data;
 };
 
-export const fetchNovaPoshtaBranches = async (cityRef) => {
-  try {
-    const storeId = getStoreIdFromCookie();
-    if (!storeId) {
-      throw new Error("Store ID not found in cookies");
-    }
-
-    const response = await api.get("/getBranches", {
-      headers: {
-        "x-store-id": storeId,
-      },
-      params: {
-        cityRef,
-      },
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error("Помилка при отриманні відділень НП:", error);
-    throw error;
-  }
+export const fetchNovaPoshtaBranches = async (
+  cityRef: string,
+  storeId: string
+) => {
+  const response = await api.get("/getBranches", {
+    headers: {
+      "x-store-id": storeId,
+    },
+    params: {
+      cityRef,
+    },
+  });
+  return response.data;
 };
 
 export const fetchClientProducts = async ({

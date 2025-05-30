@@ -1,15 +1,16 @@
 "use client";
 
-import { cloneElement, InputHTMLAttributes, useMemo, JSX } from "react";
+import { cloneElement, InputHTMLAttributes, JSX, useId } from "react";
 import { SpaceProps } from "styled-system";
 import { colorOptions } from "interfaces";
 import { StyledTextField, TextFieldWrapper } from "./styles";
 
-// ==============================================================
 type SpacingKey = `${"m" | "p"}${string}`;
 type SpacingProps = Partial<Record<SpacingKey, any>>;
 
-export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement>, SpaceProps {
+export interface TextFieldProps
+  extends InputHTMLAttributes<HTMLInputElement>,
+    SpaceProps {
   id?: string;
   label?: string;
   color?: string;
@@ -18,7 +19,6 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement>, S
   labelColor?: colorOptions;
   endAdornment?: JSX.Element;
 }
-// ==============================================================
 
 export default function TextField({
   id,
@@ -30,28 +30,30 @@ export default function TextField({
   fullWidth,
   ...props
 }: TextFieldProps) {
-  const spacingProps = useMemo(() => {
-    return Object.entries(props).reduce<SpacingProps>((acc, [key, value]) => {
-      if (key.startsWith("m") || key.startsWith("p")) {
-        acc[key as SpacingKey] = value;
-      }
-      return acc;
-    }, {});
-  }, [props]);
+  const generatedId = useId();
+  const textId = id || generatedId;
+
+  const spacingProps: SpacingProps = {};
+  for (const key in props) {
+    if (key.startsWith("m") || key.startsWith("p")) {
+      spacingProps[key as SpacingKey] = props[key as SpacingKey];
+    }
+  }
 
   return (
     <TextFieldWrapper
       color={color || (labelColor && `${labelColor}.main`)}
       fullWidth={fullWidth}
-      {...spacingProps}>
-      {label && <label htmlFor={id}>{label}</label>}
+      {...spacingProps}
+    >
+      {label && <label htmlFor={textId}>{label}</label>}
 
       <div className="relative">
-        <StyledTextField id={id} errorText={errorText} {...props} />
+        <StyledTextField id={textId} errorText={errorText} {...props} />
 
         {endAdornment &&
           cloneElement(endAdornment, {
-            className: `end-adornment ${endAdornment.props.className || ""}`
+            className: `end-adornment ${endAdornment.props.className || ""}`,
           })}
       </div>
 
