@@ -180,6 +180,8 @@ export default function CheckoutForm({
         handleBlur,
         handleSubmit,
         setFieldValue,
+        isSubmitting,
+        isValid,
       }) => (
         <form onSubmit={handleSubmit}>
           <Card1 mb="2rem">
@@ -326,8 +328,9 @@ export default function CheckoutForm({
                 color="primary"
                 type="submit"
                 fullWidth
+                disabled={!isValid || isSubmitting}
               >
-                Перейти до оплати
+                {isSubmitting ? "Надсилання..." : "Перейти до оплати"}
               </Button>
             </Grid>
           </Grid>

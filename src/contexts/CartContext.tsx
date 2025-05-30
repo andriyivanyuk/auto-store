@@ -4,7 +4,7 @@ import { useMemo, useReducer, createContext, PropsWithChildren } from "react";
 import { INITIAL_CART } from "@data/cart";
 
 // ==============================================================
-interface CartItem {
+export interface CartItem {
   qty: number;
   name: string;
   slug?: string;
