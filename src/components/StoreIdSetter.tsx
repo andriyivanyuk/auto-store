@@ -5,7 +5,7 @@ import { saveStoreIdToCookie } from "services/cookieService";
 
 export default function StoreIdSetter() {
   useEffect(() => {
-    saveStoreIdToCookie("e72f4c9d63b1085a");
+    saveStoreIdToCookie("b67081849ada67fa");
   }, []);
 
   return null;

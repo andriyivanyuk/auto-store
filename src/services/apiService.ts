@@ -171,3 +171,20 @@ export const submitOrder = async (payload) => {
 
   return response.data;
 };
+
+export const submitPaymentInit = async (orderId: string) => {
+  const storeId = getStoreIdFromCookie();
+  if (!storeId) throw new Error("Store ID not found in cookies");
+
+  const response = await api.post(
+    "/payments/initiate",
+    { orderId },
+    {
+      headers: {
+        "x-store-id": storeId,
+      },
+    }
+  );
+
+  return response.data;
+};
