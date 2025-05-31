@@ -5,11 +5,17 @@ import Box from "@component/Box";
 import CategorySidebar from "../../../components/CategorySidebar";
 import { fetchProductsByCategory } from "services/apiService";
 import ProductList from "app/product/product-list/ProductList";
+import useCart from "@hook/useCart";
+import { useRouter } from "next/navigation";
+import Button from "@component/buttons/Button";
+import FlexBox from "@component/FlexBox";
 
 export default function MobileViewPage() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [products, setProducts] = useState([]);
   const [storeId, setStoreId] = useState<string | null>(null);
+  const { state } = useCart();
+  const router = useRouter();
 
   const sortOptions = [
     { label: "Від низької до високої", value: "Від низької до високої" },
@@ -58,6 +64,21 @@ export default function MobileViewPage() {
           </p>
         )}
       </Box>
+
+      {/* Кнопка оформлення замовлення */}
+      {/* Кнопка оформлення замовлення */}
+      {state.cart.length > 0 && (
+        <Box display="flex" justifyContent="center" px="1.5rem" mt="2rem">
+          <Button
+            color="primary"
+            variant="contained"
+            borderRadius={8}
+            onClick={() => router.push("/checkout")}
+          >
+            Оформити замовлення
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }

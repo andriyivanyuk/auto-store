@@ -15,7 +15,10 @@ interface Props {
 }
 // ===============================================================================
 
-export default function ShopLayout({ navbar, children }: PropsWithChildren<Props>) {
+export default function ShopLayout({
+  navbar,
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <StyledRoot>
       <Topbar />

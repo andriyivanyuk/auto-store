@@ -58,7 +58,7 @@ export default function MobileNavigationBar() {
 
             {item.title}
 
-            {item.title === "Cart" && !!state.cart.length && (
+            {item.title === "Кошик" && !!state.cart.length && (
               <Chip
                 top="4px"
                 px="0.25rem"

@@ -18,8 +18,8 @@ interface InitialState {
 }
 
 interface CartAction {
-  payload: CartItem;
-  type: "CHANGE_CART_AMOUNT";
+  payload?: CartItem;
+  type: "CHANGE_CART_AMOUNT" | "CLEAR_CART";
 }
 
 interface ContextProps {
@@ -63,6 +63,9 @@ const reducer = (state: InitialState, action: CartAction) => {
         ...state,
         cart: [...currentCart, updatedItem],
       };
+
+    case "CLEAR_CART":
+      return { ...state, cart: [] };
 
     default:
       return state;

@@ -35,8 +35,6 @@ export default function Header({ isFixed, className }: HeaderProps) {
 
   const handleOpenCart = useCallback(() => setOpen(true), []);
   const handleCloseCart = useCallback(() => setOpen(false), []);
-  const handleOpenLogin = useCallback(() => setLoginOpen(true), []);
-  const handleCloseLogin = useCallback(() => setLoginOpen(false), []);
 
   const CART_HANDLE = (
     <Box ml="1rem" position="relative" onClick={handleOpenCart}>

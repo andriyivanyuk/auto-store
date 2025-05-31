@@ -8,6 +8,7 @@ import Container from "../Container";
 import { StyledTopbar } from "./styles";
 
 import logo from "../../../public/assets/images/logo.svg";
+import Link from "next/link";
 
 export default function Topbar() {
   useEffect(() => {}, []);
@@ -16,9 +17,13 @@ export default function Topbar() {
     <StyledTopbar>
       <Container className="container">
         <div className="topbar-left">
-          <div className="logo">
-            <NextImage src={logo} alt="Bonik" />
-          </div>
+          <Link
+            href="/"
+            className="logo"
+            style={{ display: "inline-block", width: "auto", height: "auto" }}
+          >
+            <NextImage src={logo} alt="Bonik" width={120} height={50} />
+          </Link>
 
           <div className="phone">
             <IconPhone size={16} stroke={1.5} />

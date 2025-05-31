@@ -69,7 +69,7 @@ export default function CheckoutForm({
   setDeliverySelection,
 }: CheckoutFormProps) {
   const router = useRouter();
-  const { state } = useCart();
+  const { state, dispatch } = useCart();
 
   const [storeId, setStoreId] = useState<string | null>(null);
   const [cityOptions, setCityOptions] = useState<SelectOption[]>([]);
@@ -159,7 +159,9 @@ export default function CheckoutForm({
       if (orderId) {
         localStorage.setItem("lastOrderId", orderId.toString());
       }
-      // router.push(`/payment?orderId=${orderId}`);
+
+      dispatch({ type: "CLEAR_CART" });
+
       router.push("/order-success");
     } catch (error) {
       console.error("Помилка при створенні замовлення:", error);
@@ -334,7 +336,7 @@ export default function CheckoutForm({
                 fullWidth
                 disabled={!isValid || isSubmitting}
               >
-                {isSubmitting ? "Надсилання..." : "Перейти до оплати"}
+                {isSubmitting ? "Надсилання..." : "Оформити замовлення"}
               </Button>
             </Grid>
           </Grid>

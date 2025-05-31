@@ -1,27 +1,28 @@
 "use client";
-import Link from "next/link";
+
 import { Fragment } from "react";
+import { useRouter } from "next/navigation";
+
 // GLOBAL CUSTOM COMPONENTS
 import Box from "@component/Box";
-import Select from "@component/Select";
 import Grid from "@component/grid/Grid";
 import { Card1 } from "@component/Card1";
-import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
-import TextArea from "@component/textarea";
-import { Button } from "@component/buttons";
-import TextField from "@component/text-field";
 import Typography from "@component/Typography";
 import { ProductCard7 } from "@component/product-cards";
+import Button from "@component/buttons/Button";
+
 // CUSTOM HOOK
 import useCart from "@hook/useCart";
-// CUSTOM DATA
-import countryList from "@data/countryList";
+import useWindowSize from "@hook/useWindowSize";
+
 // UTILS
 import { currency } from "@utils/utils";
 
 export default function Cart() {
   const { state } = useCart();
+  const router = useRouter();
+  const width = useWindowSize();
 
   const getTotalPrice = () => {
     return (
@@ -31,6 +32,14 @@ export default function Cart() {
       ) || 0
     );
   };
+
+  if (state.cart.length === 0) {
+    return (
+      <Typography fontSize="18px" textAlign="center" mt="3rem">
+        Ваш кошик порожній
+      </Typography>
+    );
+  }
 
   return (
     <Fragment>
@@ -58,7 +67,6 @@ export default function Cart() {
               mb="1rem"
             >
               <Typography color="gray.600">Разом:</Typography>
-
               <Typography fontSize="18px" fontWeight="600" lineHeight="1">
                 {currency(getTotalPrice())}
               </Typography>
@@ -66,6 +74,21 @@ export default function Cart() {
           </Card1>
         </Grid>
       </Grid>
+
+      {/* Кнопка оформлення замовлення тільки для мобілки/планшета */}
+      {width <= 900 && (
+        <Box display="flex" justifyContent="center" px="1.5rem" mt="2rem">
+          <Button
+            color="primary"
+            variant="contained"
+            borderRadius={8}
+            onClick={() => router.push("/checkout")}
+            fullWidth
+          >
+            До замовлень
+          </Button>
+        </Box>
+      )}
     </Fragment>
   );
 }
