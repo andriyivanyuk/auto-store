@@ -159,7 +159,8 @@ export default function CheckoutForm({
       if (orderId) {
         localStorage.setItem("lastOrderId", orderId.toString());
       }
-      router.push(`/payment?orderId=${orderId}`);
+      // router.push(`/payment?orderId=${orderId}`);
+      router.push("/order-success");
     } catch (error) {
       console.error("Помилка при створенні замовлення:", error);
     } finally {
