@@ -5,6 +5,7 @@ import { fetchProductCategoriesWithSubtypes } from "services/apiService";
 import { StyledCategoryDropdown } from "./styles";
 import CategoryMenuItem from "./CategoryMenuItem";
 import MegaMenu1 from "./mega-menu/MegaMenu1";
+import { ProductType } from "interfaces/productType";
 
 type CategoryDropdownProps = {
   open: boolean;
@@ -47,7 +48,7 @@ export default function CategoryDropdown({
           {category.has_subtypes && (
             <MegaMenu1
               data={{
-                categories: category.product_types?.map((pt: any) => ({
+                categories: category.product_types?.map((pt: ProductType) => ({
                   title: pt.title,
                   href: `/product/product-list/type/${pt.product_type_id}`,
                   icon: pt.icon_path,

@@ -61,7 +61,7 @@ export const fetchProductById = async (productId: string, storeId: string) => {
       throw new Error("Store ID not found in cookies");
     }
 
-    const response = await api.get(`/product/${productId}`, {
+    const response = await api.get(`/products/${productId}`, {
       headers: {
         "x-store-id": storeId,
       },
@@ -146,7 +146,6 @@ export const fetchClientProducts = async ({
   }
 };
 
-// services/apiService.ts
 export const fetchProductCategoriesWithSubtypes = async () => {
   try {
     const storeId = getStoreIdFromCookie();
@@ -167,19 +166,6 @@ export const fetchProductCategoriesWithSubtypes = async () => {
   }
 };
 
-export const submitContactMessage = async (payload) => {
-  const storeId = getStoreIdFromCookie();
-  if (!storeId) throw new Error("Store ID not found in cookies");
-
-  const response = await api.post("/contact", payload, {
-    headers: {
-      "x-store-id": storeId,
-    },
-  });
-
-  return response.data;
-};
-
 export const submitOrder = async (payload) => {
   const storeId = getStoreIdFromCookie();
   if (!storeId) throw new Error("Store ID not found in cookies");
@@ -189,23 +175,6 @@ export const submitOrder = async (payload) => {
       "x-store-id": storeId,
     },
   });
-
-  return response.data;
-};
-
-export const submitPaymentInit = async (orderId: string) => {
-  const storeId = getStoreIdFromCookie();
-  if (!storeId) throw new Error("Store ID not found in cookies");
-
-  const response = await api.post(
-    "/payments/initiate",
-    { orderId },
-    {
-      headers: {
-        "x-store-id": storeId,
-      },
-    }
-  );
 
   return response.data;
 };
