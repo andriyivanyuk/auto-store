@@ -35,7 +35,11 @@ export default function CategoryDropdown({
       {categories.map((category) => (
         <CategoryMenuItem
           key={category.category_id}
-          href={`/product/product-list/category/${category.category_id}`}
+          href={
+            category.has_subtypes
+              ? undefined
+              : `/product/product-list/category/${category.category_id}`
+          }
           title={category.title}
           caret={category.has_subtypes}
           imageSrc={category.icon_path}

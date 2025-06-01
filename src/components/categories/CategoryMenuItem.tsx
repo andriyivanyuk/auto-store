@@ -5,7 +5,7 @@ import Image from "next/image";
 import { StyledCategoryMenuItem } from "./styles";
 
 interface CategoryMenuItemProps {
-  href: string;
+  href?: string;
   title: string;
   caret?: boolean;
   imageSrc?: string;
@@ -19,24 +19,25 @@ export default function CategoryMenuItem({
   caret = true,
   imageSrc,
 }: CategoryMenuItemProps) {
+  const content = (
+    <div className="category-dropdown-link">
+      {imageSrc && (
+        <Image
+          src={imageSrc}
+          alt={title}
+          width={30}
+          height={30}
+          style={{ objectFit: "contain", marginRight: 8 }}
+        />
+      )}
+      <span className="title">{title}</span>
+      {caret && <IconChevronRight stroke={1.5} size={16} />}
+    </div>
+  );
+
   return (
     <StyledCategoryMenuItem>
-      <Link href={href}>
-        <div className="category-dropdown-link">
-          {imageSrc && (
-            <Image
-              src={imageSrc}
-              alt={title}
-              width={30}
-              height={30}
-              style={{ objectFit: "contain" }}
-            />
-          )}
-          <span className="title">{title}</span>
-          {caret && <IconChevronRight stroke={1.5} size={16} />}
-        </div>
-      </Link>
-
+      {href ? <Link href={href}>{content}</Link> : content}
       {children}
     </StyledCategoryMenuItem>
   );
