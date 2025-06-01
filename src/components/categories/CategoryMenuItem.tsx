@@ -27,8 +27,8 @@ export default function CategoryMenuItem({
             <Image
               src={imageSrc}
               alt={title}
-              width={24}
-              height={24}
+              width={30}
+              height={30}
               style={{ objectFit: "contain" }}
             />
           )}

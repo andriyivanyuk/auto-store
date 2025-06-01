@@ -21,7 +21,7 @@ export const fetchProductTypes = async () => {
       throw new Error("Store ID not found in cookies");
     }
 
-    const response = await api.get("/product/productTypes", {
+    const response = await api.get("/products/types", {
       headers: {
         "x-store-id": storeId,
       },
@@ -42,7 +42,7 @@ export const fetchProductsByCategory = async (
       throw new Error("Store ID not found in cookies");
     }
 
-    const response = await api.get(`/productsByType/${productTypeId}`, {
+    const response = await api.get(`/products/by-type/${productTypeId}`, {
       headers: {
         "x-store-id": storeId,
       },
@@ -142,6 +142,27 @@ export const fetchClientProducts = async ({
     return response.data;
   } catch (error) {
     console.error("Помилка при отриманні продуктів:", error);
+    throw error;
+  }
+};
+
+// services/apiService.ts
+export const fetchProductCategoriesWithSubtypes = async () => {
+  try {
+    const storeId = getStoreIdFromCookie();
+    if (!storeId) {
+      throw new Error("Store ID not found in cookies");
+    }
+
+    const response = await api.get("/products/categories", {
+      headers: {
+        "x-store-id": storeId,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при завантаженні категорій:", error);
     throw error;
   }
 };

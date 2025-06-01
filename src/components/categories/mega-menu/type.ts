@@ -1,11 +1,15 @@
 type Image = { href: string; imgUrl: string };
 
-type SubCategory = { href: string; title: string };
+type SubCategory = {
+  icon?: string; // зображення
+  href: string;
+  title: string;
+};
 
 type Category = {
   title: string;
-  href?: string;
-  subCategories: SubCategory[];
+  href: string;
+  icon?: string;
 };
 
 type MegaMenu1 = {

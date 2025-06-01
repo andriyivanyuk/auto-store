@@ -1,63 +1,67 @@
 import Link from "next/link";
+import Image from "next/image";
 
-import Box from "@component/Box";
-import Card from "@component/Card";
 import Grid from "@component/grid/Grid";
-import FlexBox from "@component/FlexBox";
-import NavLink from "@component/nav-link";
-import NextImage from "@component/NextImage";
-import { SemiSpan } from "@component/Typography";
+import Card from "@component/Card";
+import Box from "@component/Box";
 import { StyledMegaMenu1 } from "./styles";
 import { MegaMenu1Props } from "./type";
 
 export default function MegaMenu1({
-  data: { categories, rightImage, bottomImage },
-  minWidth = "760px"
+  data: { categories },
+  minWidth = "360px", // менша ширина
 }: MegaMenu1Props) {
   if (!categories || categories.length === 0) return null;
 
   return (
     <StyledMegaMenu1 className="mega-menu">
-      <Card ml="1rem" minWidth={minWidth} boxShadow="regular" overflow="hidden" borderRadius={8}>
-        <FlexBox px="1.25rem" py="0.875rem">
-          <Box flex="1 1 0">
-            <Grid container spacing={4}>
-              {categories?.map((item, ind) => (
-                <Grid item md={3} key={ind}>
-                  {item.href ? (
-                    <NavLink className="title-link" href={item.href}>
-                      {item.title}
-                    </NavLink>
-                  ) : (
-                    <SemiSpan className="title-link">{item.title}</SemiSpan>
+      <Card
+        ml="1rem"
+        minWidth={minWidth}
+        maxWidth="400px"
+        boxShadow="regular"
+        overflow="hidden"
+        borderRadius={8}
+        p="0.5rem 0.75rem"
+      >
+        <Grid container spacing={1}>
+          {categories.map((item, index) => (
+            <Grid item xs={12} key={index}>
+              <Link href={item.href}>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  px="0.75rem"
+                  py="0.5rem"
+                  borderRadius="6px"
+                  transition="all 250ms ease-in-out"
+                >
+                  {item.icon && (
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={30}
+                      height={30}
+                      style={{
+                        objectFit: "contain",
+                        marginRight: "0.75rem",
+                      }}
+                    />
                   )}
-
-                  {item.subCategories?.map((sub, ind) => (
-                    <NavLink key={ind} className="child-link" href={sub.href}>
-                      {sub.title}
-                    </NavLink>
-                  ))}
-                </Grid>
-              ))}
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {item.title}
+                  </span>
+                </Box>
+              </Link>
             </Grid>
-          </Box>
-
-          {rightImage && (
-            <Link href={rightImage.href}>
-              <Box position="relative" width="153px" height="100%">
-                <NextImage src={rightImage.imgUrl} width={137} height={318} alt="offer" />
-              </Box>
-            </Link>
-          )}
-        </FlexBox>
-
-        {bottomImage && (
-          <Link href={bottomImage.href}>
-            <Box position="relative" height="170px">
-              <NextImage src={bottomImage.imgUrl} width={711} height={162} alt="offer" />
-            </Box>
-          </Link>
-        )}
+          ))}
+        </Grid>
       </Card>
     </StyledMegaMenu1>
   );

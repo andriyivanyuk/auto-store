@@ -8,14 +8,14 @@ import Stepper from "@component/Stepper";
 const STEPPER_LIST = [
   { title: "Кошик", disabled: false, path: "/cart" },
   { title: "Деталі", disabled: false, path: "/checkout" },
-  { title: "Плата", disabled: false, path: "/payment" },
+  // { title: "Плата", disabled: false, path: "/payment" },
   { title: "Перевірка", disabled: true, path: "/orders" },
 ];
 
 const PATH_TO_STEP_MAP = {
   "/cart": 1,
   "/checkout": 2,
-  "/payment": 3,
+  // "/payment": 3,
 };
 
 export default function Layout({ children }: PropsWithChildren) {
